@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta title="しつもん">
+<meta name="description" content="しつもんするための便利なツール。しつもん上手になって安心して業務に取り組もう。">
+
+<!--css-->
+<link rel="stylesheet" href="https:unpkg.com/ress/dist/ress.min.css">
+<link rel="stylesheet" href="registration.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+<link rel="icon" type="image/png" href="../p-favicon.png">
+</head>
+<body>
+          <p>登録を</p>
+          <p>完了させよう。</p>
+          <a href="index.php">Homeへ</a>
+
+          <form action="reg-check.php" method="post"><br>
+            ID(名前)<br>
+            <input type="text" name="name" placeholder="質問　よしこ"><br>
+            第
+            <select name="year">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">シニア</option>
+            </select>
+            期 <br>
+            mail <br>
+            <input type="email" name="mail" placeholder="sample@email.com"><br>
+            password <br>
+            <input type="password" name="pass"><br>
+            password(確認用) <br>
+            <input type="password" name="pass2"><br>
+            <input type="submit" value="登録する">
+          </form>
+</body>
+</html>
