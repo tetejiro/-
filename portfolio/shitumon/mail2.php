@@ -1,35 +1,24 @@
 <?php
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
-{
-    print 'ログインできていません。';
-    print '<a href="../registration/login.html">ログインへ</a>';
-}
-else
-{
-
-              $honnin=$_SESSION['name'];
 
 //            mail
               $honbun='';
-              $honbun.=$honnin."さんから、\n";
+              $honbun.=$whosename."さんから、\n";
               $honbun.=$name."さんに質問したいことがあります。\n";
-              $honbun.='内容は以下の通りです。'"\n";
+              $honbun.="内容は以下の通りです。\n";
               $honbun.="\n\n";
-              $honbun.='----------------------------';
-              $honbun.='状況説明'"\n";
-              $honbun.=$situation."\n";
-              $honbun.='どんな状態にしたいのか。';
-              $honbun.=$goal;
-              $honbun.='できないところ'."\n";
-              $honbun.=$what."\n";
-              $honbun.='自分ではどう考えたか'"\n";
-              $honbun.=$why;
-              $honbun.='試してみたこと・その他'"\n";
-              $honbun.=$try."\n";
-              $honbun.='----------------------------'"\n";
-              $honbun.='お手すきの際に、対応していただけますと嬉しいです。'."/n/n";
+              $honbun.="----------------------------\n";
+              $honbun.="〇状況説明\n";
+              $honbun.=$situation."\n\n";
+              $honbun.="〇どんな状態にしたいのか。\n";
+              $honbun.="$goal\n\n";
+              $honbun.="〇できないところ\n";
+              $honbun.=$what."\n\n";
+              $honbun.="〇自分ではどう考えたか\n";
+              $honbun.="$why\n\n";
+              $honbun.="〇試してみたこと・その他\n";
+              $honbun.=$try."\n\n";
+              $honbun.="----------------------------\n";
+              $honbun.="お手すきの際に、対応していただけますと嬉しいです。\n\n";
 
               $title='質問のお知らせです。';
               $header='From:shitumon@shitai.co.jp';
@@ -37,5 +26,5 @@ else
               mb_language('Japanese');
               mb_internal_encoding('UTF-8');
               mb_send_mail($mail,$title,$honbun,$header);
-}
+
 ?>

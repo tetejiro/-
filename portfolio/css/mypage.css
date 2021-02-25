@@ -1,0 +1,149 @@
+@charset "utf-8";
+body{
+  width: 95vw;
+  margin: 20px;
+  margin-bottom: 10vh;
+}
+nav{
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+}
+nav > a ,nav > p{
+  display: inline-block;
+  margin-top: 2.5vh;
+  width: 10vw;
+  height: 5vh;
+}
+nav > a:hover , nav > p:hover{
+  width: 10vw;
+  height: 5vh;
+  padding: 0.25em 0.5em;
+  background: #F3F3F3;
+  border-radius: 15px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.hidari > img , h1{
+  display: inline-block;
+  vertical-align:baseline;
+  position:absolute
+  top: auto;
+  transform: translateY(-50%)
+}
+.hidari{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25vw;
+  height: 100px;
+  letter-spacing: 20px;
+}
+.hidari > a > h1 {
+  width: 250px;
+  text-align: center;
+}
+.hidari > a{
+  position: relative;
+  display: block;
+  padding-top: 10px;
+}
+a{
+  text-decoration: none;
+  color: #2b2b2b;
+}
+.kibun{
+  margin-left: 30%;
+  width: 40vw;
+  display: flex;
+  justify-content: space-around;
+  border: solid #B0DEEC 4px;
+  border-radius: 10px;
+}
+.area{
+  border: solid 3.5px #B0DEEC;
+  width: 40vw;
+  height: 30vh;
+  border-radius: 10px;
+}
+.zenhan{
+  padding-top: 5vh;
+  padding-bottom: 10vh;
+  border-bottom: solid 4px #2b2b2b;
+  margin-bottom: 10vw;
+}
+.zenhan1{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5vh;
+}
+.emotion{
+  text-align: center;
+}
+.kouhan{
+  margin-top: 20px;
+}
+.a , .b , .c {
+  display: inline-block;
+  width: 450px;
+  height: 100px;
+  border: solid #B0DEEC 3.5px;
+  border-radius: 10px;
+}
+.makasete{
+  margin-bottom: 10vh;
+}
+.makasete1{
+  display: flex;
+  justify-content: space-around;
+}
+.kohan1{
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid 4px #2b2b2b;
+  height: 22.5vw;
+  margin-bottom: 8vh;
+}
+
+.nav2 *{
+  display: inline-block;
+  text-align: center;
+  margin-top: 2.5vh;
+  width: 10vw;
+  height: 5vh;
+}
+.nav2 > a:hover , #kousin:hover{
+  width: 10vw;
+  height: 5vh;
+  padding: 0.25em 0.5em;
+  background: #F3F3F3;
+  border-radius: 15px;
+}
+/*
+.botan{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 25%;
+  height: 10%;
+  margin-bottom: 10vh;
+}
+.botan > #kousin , .botan > a , #shitu{
+  display: block;
+  width: 6rem;
+  text-align: center;
+  color: black;
+}
+.navzentai{
+  display: flex;
+  justify-content: flex-start;
+}
+*/

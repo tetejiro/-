@@ -9,75 +9,118 @@ if(isset($_SESSION['login'])==false)
 }
 else
 {
-  print $_SESSION['name'];
-  print 'さん。今日も頑張ろう。';
+      //自分のコード
+      $honnin=$_SESSION['code'];
+      //相手のコード
+      if(isset($_GET['code'])==true)
+      {
+          $code=$_GET['code'];
+//          print $code;
+      }
+      else
+      {
+          $code=0;
+      }
 
-                require_once '../db.php';
-                $dbh=new PDO($dsn,$user,$password);
-                $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try
+      {
+          require_once '../db.php';
+          $dbh=new PDO($dsn,$user,$password);
+          $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-                $sql='SELECT task,bytime1,bytime2,emotion,time1,time2,attention,strong1,strong2,strong3
-                      FROM now where nitizi=(select max(nitizi) from now)';
+          //自分のコード
+          if(empty($_GET['code'])==true)
+          {
+              $sql="SELECT *
+                    FROM now
+                    WHERE whose = $honnin";
+              $stmt=$dbh->prepare($sql);
+              $stmt->execute();
+              $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+              $count=count($rec);
+              $rec=$rec[$count-1];
+
+              require_once './hozyo.php';
+          }
+          else
+          {
+              if($code==$honnin)
+              {
+                //リストから自分のマイページ
+                $sql="SELECT *
+                      FROM now
+                      WHERE whose = $honnin";
                 $stmt=$dbh->prepare($sql);
                 $stmt->execute();
-                $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-                $dbh=null;
+                $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                // SELECT * FROM テーブル名 where カラム名=(select max(カラム名) from テーブル名)
-                // SELECT * FROM テーブル名 ORDER BY 列名 DESC LIMIT 1
-                // 1SELECT max(列名） FROM テーブル名　GROUP BY 列名
+                $count=count($rec);
+                $rec=$rec[$count-1];
 
-/*
-                member-list.phpからパラメータでcodeを送っているから、
-                他の人のマイページを参照している場合に、codeを変数に代入。
-*/
-                if(isset($_GET['code'])==true)
-                {
-                  $code=$_GET['code'];
-                }
-//              前回記録している内容があれば、その内容を表示するため、値を変数に代入。
-                if(isset($rec['task'])==true)
-                {
-                  $task=$rec['task'];
-                }
-                if(isset($rec['bytime'])==true)
-                {
-                  $bytime1=$rec['bytime1'];
-                }
-                if(isset($rec['bytime2'])==true)
-                {
-                  $bytime2=$rec['bytime2'];
-                }
-                if(isset($rec['emotion'])==true)
-                {
-                  $emotion=$rec['emotion'];
-                }
-                if (isset($rec['time1'])==true)
-                {
-                  $time1=$rec['time1'];
-                }
-                if (isset($rec['time2'])==true)
-                {
-                  $time2=$rec['time2'];
-                }
-                if (isset($rec['attention'])==true)
-                {
-                  $attention=$rec['attention'];
-                }
-                if (isset($rec['strong1'])==true)
-                {
-                  $strong1=$rec['strong1'];
-                }
-                if (isset($rec['strong2'])==true)
-                {
-                  $strong2=$rec['strong2'];
-                }
-                if (isset($rec['strong3'])==true)
-                {
-                  $strong3=$rec['strong3'];
-                }
+                require_once './hozyo.php';
+              }
+              else
+              {
+                //リストから他の人のマイページ
+                $sql="SELECT *
+                      FROM now
+                      WHERE whose = $code";
+                $stmt=$dbh->prepare($sql);
+                $stmt->execute();
+                $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  }
+                $count=count($rec);
+                $rec=$rec[$count-1];
+
+                require_once './hozyo.php';
+              }
+          }
+      }
+      catch (\Exception $e)
+      {
+          var_dump($e);
+          print 'ただいま障害中です。<br>前回のデータを読み取れませんでした。<br>';
+          print '<a href="../registration/index.php">もどる</a>';
+      }
+?>
+<div class="header">
+<div class="hidari">
+              <a href="../registration/index.php">
+                <img src="../favicon/p-favicon3.png" alt="?"><h1>しつもん</h1>
+              </a>
+</div>
+<?php           if(empty($code)==true)
+                {
+                  print $_SESSION['name'];
+                  print 'さんのマイページ。<br>今日も頑張ろう。';
+                }
+                else
+                {
+                    try
+                    {
+                        if($code==$honnin)
+                        {
+                          print $_SESSION['name'];
+                          print 'さんのマイページ。<br>今日も頑張ろう。';
+                        }
+                        else
+                        {
+                          $sql='SELECT name FROM member WHERE code=?';
+                          $stmt=$dbh->prepare($sql);
+                          $data[]=$code;
+                          $stmt->execute($data);
+                          $rec3=$stmt->fetch(PDO::FETCH_ASSOC);
+                          $dbh=null;
+                          print $rec3['name'];
+                          print 'さんのページです。<br>注意書きによく目を通してしつもんしましょう。';
+                        }
+                    }
+                    catch (\Exception $e)
+                    {
+                        print '誰のマイページかわかりません。ログインしなおしてください。';
+                    }
+                }
 ?>
 
 <!DOCTYPE html>
@@ -87,61 +130,175 @@ else
 <meta title="しつもん">
 
 <!-- css -->
-<link rel="stylesheet" href="https:unpkg.com/ress/dist/ress.min.css">
-<link rel="stylesheet" href="registration.css">
+<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+<link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
-<link rel="icon" type="image/png" href="../p-favicon.png">
+<link rel="icon" type="image/png" href="../favicon/p-favicon.png">
 </head>
 <body>
-              <h1>しつもん</h1>
+</div>
+<nav>
+  <?php
+      if(empty($code)==true)
+      {
+          print '<p><label for="kousin">更新</label></p>';
+      }
+      if(empty($code)==false)
+      {
+          if($code==$honnin)
+          {
+              print '<p><label for="kousin">更新</label></p>';
+          }
+      }
+  ?>
+              <a href="../mypage/mylist.php">質問リスト</a>
+              <a href="member-list.php">メンバーリスト</a>
 
-              更新 <br>
-              他の人 <br>
-              しつもんする <br><br>
-
-              <form action="mypage-update.php" method="post">
-                今は何をしていますか？ <br>
-                <textarea name="now" value="<?php $now ?>"></textarea><br>
-                どれくらいかかりそうですか？ <br>
-                <input type="time" name="bytime1" value="<?php $bytime1 ?>">
-                ～
-                <input type="time" name="bytime2" value="<?php $bytime2 ?>"><br>
-                <fieldset>
-                  <legend>今日の気分は？</legend><br>
-                  <label><input type="radio" name="emotion" value="<?php $emotion ?>">余裕</label>
-                  <label><input type="radio" name="emotion" value="<?php $emotion ?>">普通</label>
-                  <label><input type="radio" name="emotion" value="<?php $emotion ?>">余裕ない</label>
-                  <label><input type="radio" name="emotion" value="<?php $emotion ?>">忙しい</label>
-                  <label><input type="radio" name="emotion" value="<?php $emotion ?>">手伝ってほしい</label>
-                </fieldset>
-                サマータイム <br>
-                <input type="time" name="time1" value="<?php $time1 ?>">
-                ～
-                <input type="time" name="time2" value="<?php $time2 ?>"><br>
-                質問時の注意事項 <br>
-                <textarea name="attention" rows="4" cols="50" value="<?php $attention ?>"
-                  placeholder="※質問する前に見ておいてほしいことを書いてください。"></textarea><br>
-                ここは私に任せて！ <br>
-                <label>1<input type="text" name="strong1" value="<?php $strong1 ?>"></label>
-                <label>2<input type="text" name="strong2" value="<?php $strong2 ?>"></label>
-                <label>3<input type="text" name="strong3" value="<?php $strong3 ?>"></label><br><br>
-                <input type="hidden" name="code" value="<?php $code ?>">
-            <?php
-                $session_code=$_SESSION['code'];
-
-                if ($session_code==$_SESSION['code'])
+<?php         if(empty($code)==false)
+              {
+                if ($code!==$honnin)
                 {
-                  print '<input type="submit" value="更新する">';
+                  print '<a href="select.php?code='.$code.'">しつもんする</a><br><br>';
                 }
-            ?>
-                <a href="member-list.php">他の人</a>
+              }
+?>
+</nav>
+              <form action="mypage-branch.php" method="post">
+<div class="zenhan">
+<div class="zenhan1">
+<div class="now">
+                今は何をしていますか？ <br><br>
+                <textarea class="area" name="task">
+                  <?php if(empty($task)==false){ print $task; } ?>
+                </textarea><br><br><br>
+</div>
+<div class="time">
+                どれくらいかかりそうですか？ <br><br>
+                <input type="time" name="bytime1" value="<?php if(empty($bytime1)==false){ print $bytime1; } ?>">
+                ～
+                <input type="time" name="bytime2" value="<?php if(empty($bytime2)==false){ print $bytime2; } ?>">
+                <br><br><br>
+</div>
+</div>
+<div class="emotion">
+                  <p>今日の気分は？</p><br>
+                  <div class="kibun">
+                  <label><img src="../favicon/kao1.png"><br>
+                    <input type="radio" name="emotion" value="余裕"
+                      <?php
+                      if (isset($emotion)==true)
+                      {
+                        if($emotion=='余裕'){ print 'checked'; }
+                      }
+                      ?> >余裕
+                  </label>
 
-            <?php
-                if ($code!==$session_code)
+                  <label><img src="../favicon/kao2.png"><br>
+                    <input type="radio" name="emotion" value="普通"
+                      <?php
+                      if (isset($emotion)==true)
+                      {
+                        if($emotion=='普通'){ print 'checked'; }
+                      }
+                      ?> >普通
+                  </label>
+
+                  <label><img src="../favicon/kao3.png"><br>
+                    <input type="radio" name="emotion" value="余裕がない"
+                      <?php
+                      if (isset($emotion)==true)
+                      {
+                        if($emotion=='余裕がない'){ print 'checked'; }
+                      }
+                      ?> >余裕がない
+                  </label>
+
+                  <label><img src="../favicon/kao4.png"><br>
+                    <input type="radio" name="emotion" value="忙しい"
+                      <?php
+                      if (isset($emotion)==true)
+                      {
+                         if($emotion=='忙しい'){ print 'checked'; }
+                      }
+                      ?> >忙しい
+                  </label>
+
+                  <label><img src="../favicon/kao5.png"><br>
+                    <input type="radio" name="emotion" value="手伝ってほしい"
+                      <?php
+                      if (isset($emotion)==true)
+                      {
+                        if($emotion=='手伝ってほしい'){ print 'checked'; }
+                      }
+                      ?> >手伝ってほしい
+                  </label>
+</div>
+</div>
+</div>
+<div class="kouhan">
+<div class="kohan1">
+<div class="zikan">
+                都合がいい時間 <br><br>
+                <input type="time" name="time1" value="<?php if(empty($time1)==false){ print $time1; } ?>">
+                ～
+                <input type="time" name="time2" value="<?php if(empty($time2)==false){ print $time2; } ?>">
+                <br><br><br>
+</div>
+<div class="tyui">
+                質問時の注意事項 <br><br>
+                <textarea
+                class="area" name="attention" placeholder="※質問する前に見ておいてほしいことを書いてください。" rows="4" cols="50"><?php
+                if(isset($attention)==true){ print $attention; } ?>
+                </textarea><br><br>
+</div>
+</div>
+<div class="makasete">
+                ここは私に任せて！ <br><br><br>
+<div class="makasete1">
+                1<br>
+                  <textarea class="a" type="text" name="strong1"><?php if(empty($strong1)==false){ print $strong1; } ?>
+                  </textarea><br>
+                2<br>
+                  <textarea class="b" type="text" name="strong2"><?php if(empty($strong2)==false){ print $strong2; } ?>
+                  </textarea><br>
+                3<br>
+                  <textarea class="c" type="text" name="strong3"><?php if(empty($strong3)==false){ print $strong3; } ?>
+                  </textarea><br><br>
+                  <input type="hidden" name="code" value="<?php print $code; ?>">
+</div>
+</div>
+</div>
+<div class="navzentai">
+<div class="nav2">
+<?php
+                if(empty($code)==true)
                 {
-                    print '<a href="select.php?code='.$code.'">しつもんする</a><br>';
+                    print '<input id="kousin" type="submit" value="更新する">';
+                    print '</form>';
                 }
-            ?>
-              </form>
+                else
+                {
+                    if($code==$honnin)
+                    {
+                        print '<input id="kousin" type="submit" value="更新する">';
+                        print '</form>';
+                    }
+                }
+
+                print '<a href="../mypage/mylist.php">質問リスト</a>';
+                print '<a href="member-list.php">メンバーリスト</a>';
+
+                if(empty($code)==false)
+                {
+                  if ($code!==$honnin)
+                  {
+?>                      <a id="shitu" href="select.php?code=<?php print $code; ?>">しつもんする</a>
+<?php             }
+                }
+?>
+</div>
+</div>
 </body>
 </html>
+<?php
+}

@@ -8,104 +8,29 @@ if(isset($_SESSION['login'])==false)
 }
 else
 {
-//              $post=$array();
-              $post=$_POST;
-//              $post=(string)$post;
-//              エスケープ処理配列だからできない？
-//              $post=htmlspecialchars($post,ENT_QUOTES,'UTF-8');
-              $code=$_SESSION['code'];
-              if(isset($post['task'])==true)
-              {
-                $task=$post['task'];
-              }
-              if(isset($post['bytime'])==true)
-              {
-                $bytime1=$post['bytime1'];
-              }
-              if(isset($post['bytime2'])==true)
-              {
-                $bytime2=$post['bytime2'];
-              }
-              if(isset($post['emotion'])==true)
-              {
-                $emotion=$post['emotion'];
-              }
-              if (isset($post['time1'])==true)
-              {
-                $time1=$post['time1'];
-              }
-              if (isset($post['time2'])==true)
-              {
-                $time2=$post['time2'];
-              }
-              if (isset($post['attention'])==true)
-              {
-                $attention=$post['attention'];
-              }
-              if (isset($post['strong1'])==true)
-              {
-                $strong1=$post['strong1'];
-              }
-              if (isset($post['strong2'])==true)
-              {
-                $strong2=$post['strong2'];
-              }
-              if (isset($post['strong3'])==true)
-              {
-                $strong3=$post['strong3'];
-              }
+        //自分のコード
+        $whose=$_SESSION['code'];
+        $task=$_SESSION['task'];
+        $bytime1=$_SESSION['bytime1'];
+        $bytime2=$_SESSION['bytime2'];
+        $emotion=$_SESSION['emotion'];
+        $time1=$_SESSION['time1'];
+        $time2=$_SESSION['time2'];
+        $attention=$_SESSION['attention'];
+        $strong1=$_SESSION['strong1'];
+        $strong2=$_SESSION['strong2'];
+        $strong3=$_SESSION['strong3'];
 
-        try
-        {
+          try
+          {
               require_once '../db.php';
               $dbh=new PDO($dsn,$user,$password);
               $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-              $sql='INSERT INTO now(code,task,bytime1,bytime2,emotion,time1,time2,attention,strong1,strong2,strong3)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+              $sql='INSERT INTO now (whose,task,bytime1,bytime2,emotion,time1,time2,attention,strong1,strong2,strong3)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?)';
               $stmt=$dbh->prepare($sql);
-              $data[]=$code;
-              if(isset($task)==true)
-              {
-                $data[]=$task;
-              }
-              if(isset($bytime1)==true)
-              {
-                $data[]=$bytime1;
-              }
-              if(isset($bytime2)==true)
-              {
-                $data[]=$bytime2;
-              }
-              if(isset($emotion)==true)
-              {
-                $data[]=$emotion;
-              }
-              if (isset($time1)==true)
-              {
-                $data[]=$time1;
-              }
-              if (isset($time2)==true)
-              {
-                $data[]=$time2;
-              }
-              if (isset($attention)==true)
-              {
-                $data[]=$attention;
-              }
-              if (isset($strong1)==true)
-              {
-                $data[]=$strong1;
-              }
-              if (isset($strong2)==true)
-              {
-                $data[]=$strong2;
-              }
-              if (isset($strong3)==true)
-              {
-                $data[]=$strong3;
-              }
-/*              $data[]=$code;
+              $data[]=$whose;
               $data[]=$task;
               $data[]=$bytime1;
               $data[]=$bytime2;
@@ -118,16 +43,15 @@ else
               $data[]=$strong3;
               $stmt->execute($data);
               $dbh=null;
-*/
 
               header('Location:mypage.php');
-        }
-        catch (\Exception $e)
-        {
-              print '現在障害発生中です。';
+              exit();
+            }
+            catch (\Exception $e)
+            {
+              var_dump($e);
+              print '現在障害発生中です。<br>';
               print '<a href="../registration/login.html">もどる</a>';
-        }
-
+            }
 }
-
 ?>

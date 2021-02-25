@@ -5,19 +5,21 @@
 <meta title="しつもん">
 
 <!-- css -->
-<link rel="stylesheet" href="https:unpkg.com/ress/dist/ress.min.css">
-<link rel="stylesheet" href="registration.css">
+<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+<link rel="stylesheet" href="../css/login.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
-<link rel="icon" type="image/png" href="../p-favicon.png">
+<link rel="icon" type="image/png" href="../favicon/p-favicon.png">
 </head>
 <body>
-
+<main>
 <?php
-        $name=$_POST['name'];
-        $year=$_POST['year'];
-        $mail=$_POST['mail'];
-        $pass=$_POST['pass'];
-        $pass2=$_POST['pass2'];
+        require_once '../hensu.php';
+        $post=sanitize($_POST);
+        $name=$post['name'];
+        $year=$post['year'];
+        $mail=$post['mail'];
+        $pass=$post['pass'];
+        $pass2=$post['pass2'];
 
         $okflg=true;
         if($name=='')
@@ -32,39 +34,48 @@
         }
         if($pass!==$pass2)
         {
-          print 'パスワードを正しく入力してください。。<br>';
+          print 'パスワードを正しく入力してください。<br>';
           $okflg=false;
         }
 
         if($okflg==true)
         {
-          print 'これでよろしいでしょうか？<br>';
-          print 'お名前(ID) <br>';
-          print "$name".'<br>';
-          print 'mail <br>';
-          print "$mail".'<br>';
-          print 'password<br>';
-          print "$pass".'<br>';
-          print '<form>';
-          print '<input type="button" onclick="history.back();" value="修正する。">';
-          print '</form>';
+?>
+<div class="hidari">
+          <img class="img" src="../favicon/p-favicon2.png" alt="?">
+</div>
+<div class="migi">
+<div class="naiyo">
+          <p>入力内容確認</p><br><br>
+          <ul>お名前<br>
+          <li><?php print $name; ?></li></ul><br><br>
+          <ul>mail<br>
+          <li><?php print $mail; ?></li></ul><br><br>
+          <ul>password<br>
+          <li><?php print $pass; ?></li></ul><br><br>
+          <form>
+          <input type="button" onclick="history.back();" value="修正する"><br><br>
+          </form>
 
-          $pass=md5($pass);
-          print '<form action="reg-done.php" method="post">';
-          print '<input type="hidden" name="name" value="'.$name.'">';
-          print '<input type="hidden" name="year" value="'.$year.'">';
-          print '<input type="hidden" name="email" value="'.$mail.'">';
-          print '<input type="hidden" name="pass" value="'.$pass.'">';
-          print '<input type="submit" value="始める">';
-          print '</form>';
-        }
+<?php     $pass=md5($pass); ?>
+          <form action="reg-done.php" method="post">
+          <p><input type="hidden" name="name" value="<?php print $name; ?>"></p>
+          <p><input type="hidden" name="year" value="<?php print $year; ?>"></p>
+          <p><input type="hidden" name="pass" value="<?php print $pass; ?>"></p>
+          <p><input type="hidden" name="mail" value="<?php print $mail; ?>"></p>
+          <p><input type="submit" value="始める">
+          </form>
+<?php    }
 
         else
         {
-          print '<form>';
-          print '<input type="button" onclick="history.back();" value="戻る">';
-          print '</form>';
-        }
+?>        <form>
+          <input type="button" onclick="history.back();" value="戻る">
+          </form>
+</div>
+</div>
+</main>
+<?php        }
 ?>
 </body>
 </html>

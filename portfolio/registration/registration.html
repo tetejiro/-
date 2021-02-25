@@ -6,19 +6,24 @@
 <meta name="description" content="しつもんするための便利なツール。しつもん上手になって安心して業務に取り組もう。">
 
 <!--css-->
-<link rel="stylesheet" href="https:unpkg.com/ress/dist/ress.min.css">
-<link rel="stylesheet" href="registration.css">
+<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+<link rel="stylesheet" href="../css/login.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
-<link rel="icon" type="image/png" href="../p-favicon.png">
+<link rel="icon" type="image/png" href="../favicon/p-favicon.png">
 </head>
 <body>
+<main>
+<div class="hidari">
+          <img class="img" src="../favicon/p-favicon2.png" alt="しつもん">
+</div>
+<div class="migi">
+<div class="naiyo">
           <p>登録を</p>
           <p>完了させよう。</p>
-          <a href="index.php">Homeへ</a>
 
           <form action="reg-check.php" method="post"><br>
-            ID(名前)<br>
-            <input type="text" name="name" placeholder="質問　よしこ"><br>
+            お名前<br>
+            <input class="waku" type="text" name="name" placeholder="質問　よしこ"><br><br>
             第
             <select name="year">
               <option value="1">1</option>
@@ -28,14 +33,20 @@
               <option value="5">5</option>
               <option value="6">シニア</option>
             </select>
-            期 <br>
+            期 <br><br>
             mail <br>
-            <input type="email" name="mail" placeholder="sample@email.com"><br>
+            <input class="waku" type="email" name="mail" placeholder="sample@email.com"><br><br>
             password <br>
-            <input type="password" name="pass"><br>
+            <input class="waku" type="password" name="pass"><br><br>
             password(確認用) <br>
-            <input type="password" name="pass2"><br>
-            <input type="submit" value="登録する">
+            <input class="waku" type="password" name="pass2"><br><br>
+<div class="botan">
+              <input class="botan1" type="submit" value="登録する">
+              <a href="index.php">Homeへ</a>
+</div>
           </form>
+</div>
+</div>
+</main>
 </body>
 </html>

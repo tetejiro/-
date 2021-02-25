@@ -10,37 +10,26 @@ session_regenerate_id(true);
           {
             //内容チェック（空がないか）
             $okflg=true;
-            if (isset($_POST)==false)
-            {
-                $okflg=false;
-                print '16';
-            }
-            if (isset($_POST['situation'])==false)
-            {
-                $okflg=false;
-                print '21';
-            }
-            if (isset($_POST['goal'])==false)
-            {
-                $okflg=false;
-                print $goal;
-            }
-            if (isset($_POST['what'])==false)
+            if(empty($_POST['situation'])==true)
             {
                 $okflg=false;
             }
-            if (isset($_POST['why'])==false)
+            if(empty($_POST['goal'])==true)
             {
                 $okflg=false;
             }
-            if (isset($_POST['try'])==false)
+            if(empty($_POST['what'])==true)
+            {
+                $okflg=false;
+            }
+            if(empty($_POST['why'])==true)
             {
                 $okflg=false;
             }
 
             if ($okflg==false)
             {
-                print '空欄があります。記入してください。';
+                print '空欄があります。その他以外は全て記入してください。';
                 print '<form><input type="button" onclick="history.back()" value="戻る"></form>';
             }
             else
@@ -50,7 +39,8 @@ session_regenerate_id(true);
                   //自分のコード
                   $honnin=$_SESSION['code'];
 
-                  $post=$_POST;
+                  require_once '../hensu.php';
+                  $post=sanitize($_POST);
                   $situation=$post['situation'];
                   $goal=$post['goal'];
                   $what=$post['what'];
@@ -63,30 +53,27 @@ session_regenerate_id(true);
                         $dbh=new PDO($dsn,$user,$password);
                         $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-                        print '72';
-                        $honnin=$_SESSION['code'];
-                        $sql='INSERT INTO question(situation,goal,what,why,try) VALUES(?,?,?,?,?) WHERE code=?';
+                        $sql='INSERT INTO question (whose,whom,situation,goal,what,why,try0)
+                                     VALUES (?,?,?,?,?,?,?)';
                         $stmt=$dbh->prepare($sql);
-                        print '78';
+                        $data=array();
+                        $data[]=$honnin;
+                        $data[]=$code;
                         $data[]=$situation;
                         $data[]=$goal;
                         $data[]=$what;
                         $data[]=$why;
                         $data[]=$try;
-                        print '84';
-                        $data[]=$honnin;
                         $stmt->execute($data);
                         $dbh=null;
-                        print '82';
 
-                        print '<form action="done.php" method="post">';
-                        print '<input type="hidden" name="situation" value="'.$situation.'">';
-                        print '<input type="hidden" name="goal" value="'.$goal.'">';
-                        print '<input type="hidden" name="what" value="'.$what.'">';
-                        print '<input type="hidden" name="why" value="'.$why.'">';
-                        print '<input type="hidden" name="try" value="'.$try.'">';
-                        print '<input type="hidden" name="code" value="'.$code.'">';
-                        print '</form>';
+                        $_SESSION['whose']=$honnin;
+                        $_SESSION['whom']=$code;
+                        $_SESSION['situation']=$situation;
+                        $_SESSION['goal']=$goal;
+                        $_SESSION['what']=$what;
+                        $_SESSION['why']=$why;
+                        $_SESSION['try']=$try;
 
                         header('Location:done.php');
 
@@ -94,12 +81,10 @@ session_regenerate_id(true);
 
                   catch (\Exception $e)
                   {
+                      var_dump($e);
                       print '現在障害発生中です。';
                       print '<a href="../registration/index.php">もどる</a>';
                   }
-
-
-
             }
           }
 

@@ -1,0 +1,53 @@
+@charset "utf-8";
+body{
+  height: 100vh;
+  width: 100vw;
+}
+main{
+  display: flex;
+}
+.hidari{
+  width: 75%;
+  background: #B0DEEC;
+  position: relative;
+}
+.img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+}
+.migi{
+  background: white;
+  width: 25%;
+  height: 100vh;
+  position: relative;
+}
+.naiyo{
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+}
+.waku{
+  border: solid 1px #2b2b2b;
+}
+.botan{
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+}
+.botan1 , .botan > a{
+  display: block;
+  text-align: left;
+  width: 50%;
+  color: #2b2b2b;
+  text-decoration:none;
+}
+.naiyo > a{
+  color: #2b2b2b;
+  text-decoration: none;
+}

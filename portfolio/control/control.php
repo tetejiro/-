@@ -1,15 +1,3 @@
-<?php
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
-{
-  print 'ログインしてください。';
-  print '<a href="../registration/login.html">ログインページへ</a>';
-}
-
-else
-{
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,7 +6,7 @@ else
 
 <!-- css -->
 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-<link rel="stylesheet" href="../css/member-list.css">
+<link rel="stylesheet" href="../css/control-honmono.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
 <link rel="icon" type="image/png" href="../favicon/p-favicon.png">
 </head>
@@ -28,8 +16,7 @@ else
                   <img src="../favicon/p-favicon4.png" alt="?">
 <div class="kotoba">
 <div class="kotoba1">
-                  <h3>質問したい人を選択して、</h3>
-                  <h3>質問する際の注意事項などを確認しましょう。</h3>
+                  <h3>編集する人を選択してください。</h3>
 </div>
 </div>
 </div>
@@ -63,24 +50,32 @@ else
                             {
                                 $code=$year_member['code'];
                                 $name=$year_member['name'];
-                                print '<a class="name" href="mypage.php?code='.$code.'">';
+                                print '<div class="namae">';
+                                print '<form method="post" action="./control-branch.php">';
+                                print '<label>';
+                                print '<input type="radio" class="name" name="code" value="'.$code.'">';
                                 print $name;
                                 print 'さん';
-                                print '</a>';
+                                print '</label>';
+                                print '</div>';
                                 print '<br>';
                             }
 
                       print '</fieldset>';
-
                       }
-?></div>
+?>                </div>
+                  <div class="menu">
+                  <input type="submit" name="edit" value="編集する">
+                  <input type="submit" name="delete" value="削除する">
+                  </form>
+                  <a href="../registration/index.php">もどる</a>
+                  </div>
 <?php
-                  }
-                  else
+}
+                  if(isset($rec)==false)
                   {
                       print 'まだ登録がありません。';
                   }
-}
 ?>
 </main>
 </body>

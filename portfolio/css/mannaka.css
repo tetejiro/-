@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+body{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+.zentai{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+}
