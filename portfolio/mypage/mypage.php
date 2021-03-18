@@ -39,8 +39,10 @@ else
               $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
               $count=count($rec);
-              $rec=$rec[$count-1];
-
+              if($count>0)
+              {
+                $rec=$rec[$count-1];
+              }
               require_once './hozyo.php';
           }
           else
