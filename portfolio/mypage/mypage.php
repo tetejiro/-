@@ -21,7 +21,6 @@ else
       {
           $code=0;
       }
-
       try
       {
           require_once '../db.php';
