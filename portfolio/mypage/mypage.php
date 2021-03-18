@@ -81,7 +81,6 @@ else
       }
       catch (\Exception $e)
       {
-          var_dump($e);
           print 'ただいま障害中です。<br>前回のデータを読み取れませんでした。<br>';
           print '<a href="../registration/index.php">もどる</a>';
       }
