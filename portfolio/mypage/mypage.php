@@ -15,7 +15,6 @@ else
       if(isset($_GET['code'])==true)
       {
           $code=$_GET['code'];
-//          print $code;
       }
       else
       {
@@ -24,8 +23,8 @@ else
       try
       {
           require_once '../db.php';
-          $dbh=new PDO($dsn,$user,$password);
-          $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+          $dbh = new PDO($dsn,$user,$password);
+          $dbh -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
           //自分のコード
           if(empty($_GET['code'])==true)
@@ -57,8 +56,10 @@ else
                 $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 $count=count($rec);
-                $rec=$rec[$count-1];
-
+                if($count>0)
+                {
+                  $rec=$rec[$count-1];
+                }
                 require_once './hozyo.php';
               }
               else
@@ -72,8 +73,10 @@ else
                 $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 $count=count($rec);
-                $rec=$rec[$count-1];
-
+                if($count>0)
+                {
+                  $rec=$rec[$count-1];
+                }
                 require_once './hozyo.php';
               }
           }
