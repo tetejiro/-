@@ -34,8 +34,8 @@
           try {
 
                     require_once '../db.php';
-                    $dbh=new PDO($dsn,$user,$password);
-                    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                    $db = new DB();
+                    $dbh = $db->dbConect();
 
                     $sql='SELECT data,content FROM announce ORDER BY data DESC LIMIT 3';
                     $stmt=$dbh->prepare($sql);

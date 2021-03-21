@@ -21,9 +21,9 @@
 </div>
 </div>
 <?php
-                  require_once '../db.php';
-                  $dbh=new PDO($dsn,$user,$password);
-                  $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                    require_once '../db.php';
+                    $db = new DB();
+                    $dbh = $db->dbConect();
 
                   $sql='SELECT year,member. code,name FROM member';
                   $stmt=$dbh->prepare($sql);
