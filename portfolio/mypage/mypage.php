@@ -24,7 +24,6 @@ else
       {
           require_once '../db.php';
           $db = new DB();
-          $dbh = $db->dbConect();
 
           //自分のコード
           if(empty($_GET['code'])==true)
@@ -32,9 +31,7 @@ else
               $sql="SELECT *
                     FROM now
                     WHERE whose = $honnin";
-              $stmt=$dbh->prepare($sql);
-              $stmt->execute();
-              $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
+              $rec = $db->dbSelect($sql);
 
               $count=count($rec);
               if($count>0)

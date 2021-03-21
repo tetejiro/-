@@ -26,6 +26,18 @@ Class DB
         return $dbh;
     }
 
+    function dbSelect($sql)
+    {
+        $dbh = $this->dbConect();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rec;
+
+        $dbh = null;
+    }
+
 }
 
 ?>

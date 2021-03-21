@@ -38,10 +38,7 @@
                     $dbh = $db->dbConect();
 
                     $sql='SELECT data,content FROM announce ORDER BY data DESC LIMIT 3';
-                    $stmt=$dbh->prepare($sql);
-                    $stmt->execute();
-                    $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
-                    $dbh=null;
+                    $rec = $db->dbSelect($sql);
               }
           catch (\Exception $e)
               {
