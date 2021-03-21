@@ -26,8 +26,8 @@ try
       $year=$post['year'];
 
       require_once '../db.php';
-      $dbh=new PDO($dsn,$user,$password);
-      $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      $db = new DB();
+      $dbh = $db->dbConect();
 
       $sql='UPDATE member SET name=?,year=?,pass=?,mail=? WHERE code=?';
       $stmt=$dbh->prepare($sql);

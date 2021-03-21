@@ -24,8 +24,8 @@ else
           try
           {
               require_once '../db.php';
-              $dbh=new PDO($dsn,$user,$password);
-              $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+              $db = new DB();
+              $dbh = $db->dbConect();
 
               $sql='INSERT INTO now (whose,task,bytime1,bytime2,emotion,time1,time2,attention,strong1,strong2,strong3)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?)';

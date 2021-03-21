@@ -21,8 +21,8 @@ try
 $code=$_POST['code'];
 
 require_once '../db.php';
-$dbh=new PDO($dsn,$user,$password);
-$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$db = new DB();
+$dbh = $db->dbConect();
 
 $sql='DELETE FROM member WHERE code=?';
 $stmt=$dbh->prepare($sql);

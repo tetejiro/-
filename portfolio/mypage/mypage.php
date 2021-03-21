@@ -23,8 +23,8 @@ else
       try
       {
           require_once '../db.php';
-          $dbh = new PDO($dsn,$user,$password);
-          $dbh -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+          $db = new DB();
+          $dbh = $db->dbConect();
 
           //自分のコード
           if(empty($_GET['code'])==true)
@@ -221,7 +221,7 @@ else
                       <?php
                       if (isset($emotion)==true)
                       {
-                         if($emotion=='忙しい'){ print 'checked'; }
+                        if($emotion=='忙しい'){ print 'checked'; }
                       }
                       ?> >忙しい
                   </label>

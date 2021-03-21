@@ -9,8 +9,8 @@
             $mail=$post['mail'];
 
             require_once '../db.php';
-            $dbh=new PDO($dsn,$user,$password);
-            $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $db = new DB();
+            $dbh = $db->dbConect();
 
             $sql='LOCK TABLES member READ';
             $sql='INSERT INTO member(name,year,pass,mail) VALUES (?,?,?,?)';

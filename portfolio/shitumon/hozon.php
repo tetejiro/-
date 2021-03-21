@@ -50,8 +50,8 @@ session_regenerate_id(true);
                   try
                   {
                         require_once '../db.php';
-                        $dbh=new PDO($dsn,$user,$password);
-                        $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                        $db = new DB();
+                        $dbh = $db->dbConect();
 
                         $sql='INSERT INTO question (whose,whom,situation,goal,what,why,try0)
                                      VALUES (?,?,?,?,?,?,?)';
