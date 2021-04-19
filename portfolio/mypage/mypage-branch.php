@@ -1,4 +1,5 @@
 <?php
+require_once('libs/consts/AppConstants.php');
 session_start();
 session_regenerate_id(true);
 if(isset($_SESSION['login'])==false)
@@ -55,7 +56,7 @@ else
     $_SESSION['time1']=$time1;
     $_SESSION['time2']=$time2;
     $_SESSION['attention']=$attention;
-    $_SESSION['strong1']=$strong1;
+    $_SESSION[AppConstants::SESSION_KEY_STRONG1]=$strong1;
     $_SESSION['strong2']=$strong2;
     $_SESSION['strong3']=$strong3;
     header('Location:./mypage-update.php');

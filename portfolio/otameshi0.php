@@ -37,10 +37,9 @@
           return $dbh;
       }
 
-      //2.取得
+//2.SELECT文　オブジェクト指向で
       function dbSelect()
       {
-          //DB接続
           $dbh = $this->dbConect();
           $sql = 'SELECT * FROM announce';
           $stmt = $dbh->prepare($sql);

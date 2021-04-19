@@ -4,38 +4,20 @@ $dsn='mysql:host=mysql148.phy.lolipop.lan;dbname=LAA1049460-portfolio;charset=ut
 $user='LAA1049460';
 $password='kuriharasan';
 */
-
-
-Class DB
+require_once('libs/bases/BaseDB.php');
+final class DB extends BaseDB
 {
-    function dbConect()
+    protected function getConnectionString(): string
     {
-        $dsn='mysql:host=localhost;dbname=portfolio;charset=utf8';
-        $user='yuki';
-        $password='hy1733505';
-        try
-        {
-            $dbh = new PDO($dsn, $user, $password);
-            $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        }
-        catch(\Exception $e)
-        {
-            print 'データベース接続失敗です。'.$e->getMessage();
-            exit();
-        }
-        return $dbh;
+        return 'mysql:host=localhost;dbname=portfolio;charset=utf8';
     }
-
-    function dbSelect($sql)
+    protected function getId(): string
     {
-        $dbh = $this->dbConect();
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute();
-        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $rec;
-
-        $dbh = null;
+        return 'yuki';
+    }
+    protected function getPassword(): string
+    {
+        return 'hy1733505';
     }
 
 }
