@@ -1,0 +1,16 @@
+1.環境変数
+env
+export ENV='local'
+
+2.htaccess
+ここに同じく環境変数を設定
+
+3.config.php
+(設定ファイル)
+.config
+.xml
+.ini
+
+4.autoload
+  composer のインストール
+  composer の設定

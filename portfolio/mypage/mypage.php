@@ -1,4 +1,5 @@
 <?php
+require_once('libs/consts/AppConstants.php');
 session_start();
 session_regenerate_id(true);
 if(isset($_SESSION['login'])==false)
@@ -48,9 +49,7 @@ else
                 $sql="SELECT *
                       FROM now
                       WHERE whose = $honnin";
-                $stmt=$dbh->prepare($sql);
-                $stmt->execute();
-                $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                $rec = $db->dbSelect($sql);
 
                 $count=count($rec);
                 if($count>0)
@@ -65,9 +64,7 @@ else
                 $sql="SELECT *
                       FROM now
                       WHERE whose = $code";
-                $stmt=$dbh->prepare($sql);
-                $stmt->execute();
-                $rec=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                $rec = $db->dbSelect($sql);
 
                 $count=count($rec);
                 if($count>0)
