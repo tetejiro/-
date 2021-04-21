@@ -1,16 +1,15 @@
 <?php
-require_once('libs/consts/AppConstants.php');
+//require_once('libs/consts/AppConstants.php');
 session_start();
 session_regenerate_id(true);
 if(isset($_SESSION['login'])==false)
 {
-  print 'ログインしていません。';
+  exit('ログインしていません。');
   print '<a href="../registration/login.html">ログインへ</a>';
-  exit();
 }
 else
 {
-  require_once '../hensu.php';
+  require_once '../sanitize.php';
   $post=sanitize($_POST);
   $task=$post['task'];
   $bytime1=$post['bytime1'];
@@ -23,7 +22,8 @@ else
   $strong2=$post['strong2'];
   $strong3=$post['strong3'];
 
-  if($task=='' || $bytime1=='' || $bytime2=='' || $emotion=='' || $time1=='' || $time2=='' || $attention=='' || $strong1=='' || $strong2=='' || $strong3=='')
+  if($task=='' || $bytime1=='' || $bytime2=='' || $emotion=='' || $time1==''
+          || $time2=='' || $attention=='' || $strong1=='' || $strong2=='' || $strong3=='')
   {
     ?>
     <!DOCTYPE html>
@@ -49,16 +49,18 @@ else
   }
   else
   {
-    $_SESSION['task']=$task;
-    $_SESSION['bytime1']=$bytime1;
-    $_SESSION['bytime2']=$bytime2;
-    $_SESSION['emotion']=$emotion;
-    $_SESSION['time1']=$time1;
-    $_SESSION['time2']=$time2;
-    $_SESSION['attention']=$attention;
-    $_SESSION[AppConstants::SESSION_KEY_STRONG1]=$strong1;
-    $_SESSION['strong2']=$strong2;
-    $_SESSION['strong3']=$strong3;
+    require_once '../new-db/new-const.php';
+    $ConstDb = new ConstDb();
+    $_SESSION[ConstDb::task]=$task;
+    $_SESSION[ConstDb::bytime1]=$bytime1;
+    $_SESSION[ConstDb::bytime2]=$bytime2;
+    $_SESSION[ConstDb::emotion]=$emotion;
+    $_SESSION[ConstDb::time1]=$time1;
+    $_SESSION[ConstDb::time2]=$time2;
+    $_SESSION[ConstDb::attention]=$attention;
+    $_SESSION[ConstDb::strong1]=$strong1;
+    $_SESSION[ConstDb::strong2]=$strong2;
+    $_SESSION[ConstDb::strong3]=$strong3;
     header('Location:./mypage-update.php');
     exit();
   }

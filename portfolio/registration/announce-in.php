@@ -1,26 +1,27 @@
 <?php
 
 $content=$_POST['content'];
-
-try
+if(mb_strlen($content)<5)
 {
-    require_once '../db.php';
-    $db = new DB();
-    $dbh = $db->dbConect();
-
-    $sql='INSERT INTO announce(content) VALUES(?)';
-    $stmt=$dbh->prepare($sql);
-    $data[]=$content;
-    $stmt->execute($data);
-    $dbh=null;
-
-    header('Location:announce.php');
-
+    print '5文字以上は記載してください。';
+    print '<a href="announce.php">もどる</a><br>';
 }
-catch(\Exception $e)
+else
 {
-    print '障害により記録できませんでした。';
-    print '<a href="index.php">もどる</a>';
+    try
+    {
+        require_once '../new-db/new-insert.php';
+        $InsertDb = new InsertDb();
+        $InsertDb->insertDb1($content);
+        header('Location:announce.php');
+    }
+    catch(\Exception $e)
+    {
+        print '障害により記録できませんでした。';
+        print '<a href="index.php">もどる</a><br>';
+        var_dump($e);
+    }
+
 }
 
 ?>

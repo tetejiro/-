@@ -13,7 +13,7 @@
 <body>
 <main>
 <?php
-        require_once '../hensu.php';
+        require_once '../sanitize.php';
         $post=sanitize($_POST);
         $name=$post['name'];
         $year=$post['year'];
