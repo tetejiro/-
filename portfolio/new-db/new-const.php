@@ -34,7 +34,7 @@ class ConstDb
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES, false]);
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('接続エラーです。<a href="../registration/index.php">もどる</a>');

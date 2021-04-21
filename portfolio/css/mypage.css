@@ -35,9 +35,9 @@ nav > a:hover , nav > p:hover{
 .hidari > img , h1{
   display: inline-block;
   vertical-align:baseline;
-  position:absolute
+  position:absolute;
   top: auto;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
 }
 .hidari{
   display: flex;

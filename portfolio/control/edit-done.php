@@ -29,7 +29,7 @@ try
       $UpdateDb = new UpdateDb();
       $UpdateDb->updateDb1($name, $year, $pass, $mail, $code);
 }
-catch (\Exception $e)
+catch (Exception $e)
 {
       print $e;
       exit('ただいま障害により大変ご迷惑をおかけしております。');
