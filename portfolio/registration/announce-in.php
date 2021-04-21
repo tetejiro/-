@@ -15,7 +15,7 @@ else
         $InsertDb->insertDb1($content);
         header('Location:announce.php');
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         print '障害により記録できませんでした。';
         print '<a href="index.php">もどる</a><br>';

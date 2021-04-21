@@ -47,7 +47,7 @@ require_once('../sanitize.php');
                 print '</div>';
               }
             }
-            catch (\Exception $e)
+            catch (Exception $e)
             {
               exit ('障害発生中');
               var_dump($e);

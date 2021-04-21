@@ -64,7 +64,7 @@ else
               }
           }
       }
-      catch (\Exception $e)
+      catch (Exception $e)
       {
           print 'ただいま障害中です。<br>前回のデータを読み取れませんでした。<br>';
           exit ('<a href="../registration/index.php">もどる</a>');
@@ -109,7 +109,7 @@ else
                         print 'さんのページです。<br>注意書きによく目を通してしつもんしましょう。';
                       }
                     }
-                    catch (\Exception $e)
+                    catch (Exception $e)
                     {
                         print '誰のマイページかわかりません。ログインしなおしてください。';
                         var_dump($e);

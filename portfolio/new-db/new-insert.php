@@ -27,7 +27,7 @@ function insertDb1($content)
         $stmt->execute();
         $dbh = null;
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         var_dump($e);
         exit ('インサートできませんでした。<a href="../registration.php/index.php">もどる</a>');
@@ -56,7 +56,7 @@ function InsertDb2($name, $year, $pass, $mail)
         $stmt->execute();
         $dbh = null;
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         var_dump($e);
         exit ('インサートできませんでした。<a href="../registration.php/index.php">もどる</a>');
@@ -91,7 +91,7 @@ function insertDb3($whose, $task, $bytime1, $bytime2, $emotion, $time1, $time2, 
         $stmt->execute();
         $dbh = null;
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         var_dump($e);
         exit ('インサートできませんでした。<a href="../registration.php/index.php">もどる</a>');
@@ -123,7 +123,7 @@ function insertDb3($whose, $task, $bytime1, $bytime2, $emotion, $time1, $time2, 
         $stmt->execute();
         $dbh = null;
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         var_dump($e);
         exit ('インサートできませんでした。<a href="../registration.php/index.php">もどる</a>');

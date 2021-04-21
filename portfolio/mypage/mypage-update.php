@@ -32,7 +32,7 @@ else
               header('Location:mypage.php');
               exit();
             }
-            catch (\Exception $e)
+            catch (Exception $e)
             {
               var_dump($e);
               print '現在障害発生中です。<br>';

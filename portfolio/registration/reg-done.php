@@ -23,7 +23,7 @@ try
       header('Location:../mypage/mypage.php');
       exit();
 }
-catch (\Exception $e)
+catch (Exception $e)
 {
       var_dump($e);
       exit('ただいま障害によりご迷惑をおかけしております。');
