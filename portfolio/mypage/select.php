@@ -9,16 +9,9 @@ if($_SESSION['login']==false)
 else
 {
   $code=$_GET['code'];
-  require_once '../db.php';
-  $db = new DB();
-  $dbh = $db->dbConect();
-
-  $sql='SELECT name FROM member WHERE code=?';
-  $stmt=$dbh->prepare($sql);
-  $data[]=$code;
-  $stmt->execute($data);
-  $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-  $stmt=null;
+  require_once '../new-db/new-select.php';
+  $SelectDb = new SelectDb();
+  $rec = $SelectDb->selectDb9($code);
   $name=$rec['name'];
 ?>
 <!DOCTYPE html>

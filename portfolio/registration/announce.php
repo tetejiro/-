@@ -22,7 +22,8 @@
                     <p class="kakusu">周知内容を記載</p>
 </div>
                 <form action="announce-in.php" method="post">
-                  <textarea class="waku" name="content" rows="8" cols="80"></textarea><br><br><br>
+                  <textarea class="waku" name="content" rows="8" cols="80"></textarea>
+                  <br><br><br>
                   <input class="toroku" type="submit" value="登  録">
                 </form><br><br>
                 <a href="index.php">もどる</a>

@@ -8,41 +8,26 @@ if(isset($_SESSION['login'])==false)
 }
 else
 {
+        require_once '../new-db/new-const.php';
+        $ConstDb = new ConstDb();
         //自分のコード
         $whose=$_SESSION['code'];
-        $task=$_SESSION['task'];
-        $bytime1=$_SESSION['bytime1'];
-        $bytime2=$_SESSION['bytime2'];
-        $emotion=$_SESSION['emotion'];
-        $time1=$_SESSION['time1'];
-        $time2=$_SESSION['time2'];
-        $attention=$_SESSION['attention'];
-        $strong1=$_SESSION['strong1'];
-        $strong2=$_SESSION['strong2'];
-        $strong3=$_SESSION['strong3'];
+        $task=$_SESSION[ConstDb::task];
+        $bytime1=$_SESSION[ConstDb::bytime1];
+        $bytime2=$_SESSION[ConstDb::bytime2];
+        $emotion=$_SESSION[ConstDb::emotion];
+        $time1=$_SESSION[ConstDb::time1];
+        $time2=$_SESSION[ConstDb::time2];
+        $attention=$_SESSION[ConstDb::attention];
+        $strong1=$_SESSION[ConstDb::strong1];
+        $strong2=$_SESSION[ConstDb::strong2];
+        $strong3=$_SESSION[ConstDb::strong3];
 
           try
           {
-              require_once '../db.php';
-              $db = new DB();
-              $dbh = $db->dbConect();
-
-              $sql='INSERT INTO now (whose,task,bytime1,bytime2,emotion,time1,time2,attention,strong1,strong2,strong3)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-              $stmt=$dbh->prepare($sql);
-              $data[]=$whose;
-              $data[]=$task;
-              $data[]=$bytime1;
-              $data[]=$bytime2;
-              $data[]=$emotion;
-              $data[]=$time1;
-              $data[]=$time2;
-              $data[]=$attention;
-              $data[]=$strong1;
-              $data[]=$strong2;
-              $data[]=$strong3;
-              $stmt->execute($data);
-              $dbh=null;
+              require_once '../new-db/new-insert.php';
+              $InsertDb = new InsertDb();
+              $InsertDb->insertDb3($whose,$task,$bytime1,$bytime2,$emotion,$time1,$time2,$attention,$strong1,$strong2,$strong3);
 
               header('Location:mypage.php');
               exit();

@@ -1,38 +1,30 @@
 <?php
 session_start();
 session_regenerate_id(true);
+if(isset($_SESSION['login'])==false)
+{
+  print 'ログインしてください。';
+  print '<a href="../registration/login.html">ログインページへ</a>';
+}
+else
+{
+  $whosename=$_SESSION['name'];
+  $whose=$_SESSION['whose'];
+  $code=$_SESSION['whom'];
+  $situation=$_SESSION['situation'];
+  $goal=$_SESSION['goal'];
+  $what=$_SESSION['what'];
+  $why=$_SESSION['why'];
+  $try=$_SESSION['try'];
 
-          if(isset($_SESSION['login'])==false)
-          {
-            print 'ログインしてください。';
-            print '<a href="../registration/login.html">ログインページへ</a>';
-          }
-          else
-          {
-            $whosename=$_SESSION['name'];
-            $whose=$_SESSION['whose'];
-            $code=$_SESSION['whom'];
-            $situation=$_SESSION['situation'];
-            $goal=$_SESSION['goal'];
-            $what=$_SESSION['what'];
-            $why=$_SESSION['why'];
-            $try=$_SESSION['try'];
+  $url=$_SESSION['url'];
 
-            $url=$_SESSION['url'];
+  require_once '../new-db/new-select.php';
+  $SelectDb = new SelectDb();
+  $rec = $SelectDb->selectDb11($code);
 
-            require_once '../db.php';
-            $db = new DB();
-            $dbh = $db->dbConect();
-
-            $sql='SELECT name,mail FROM member WHERE code=?';
-            $stmt=$dbh->prepare($sql);
-            $data=array();
-            $data[]=$code;
-            $stmt->execute($data);
-            $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-            $dbh=null;
-            $name=$rec['name'];
-            $mail=$rec['mail'];
+  $name = $rec['name'];
+  $mail = $rec['mail'];
 
 ?>
 <!DOCTYPE html>
@@ -51,43 +43,26 @@ session_regenerate_id(true);
 <div class="zentai">
 <?php
 
-              switch($_SESSION['url'])
-              {
-//              直近の $URL になんの値が入っているかで場合分け。
-                case $_SESSION['shitumon']:
-                print '<a href="../mypage/mylist.php">質問リスト</a>に保存しました。<br>';
-                require_once('mail2.php');
-                print 'mailでしつもんの通知をしました。<br>';
-                print '<a href="../registration/index.php">もどる</a>';
-                break;
+  switch($_SESSION['url'])
+  {
+// 直近の $URL になんの値が入っているかで場合分け。
+    case $_SESSION['shitumon']:
+    print '<a href="../mypage/mylist.php?aite='.$whose.'">質問リスト</a>に保存しました。<br>';
+    require_once('mail2.php');
+    print 'mailでしつもんの通知をしました。<br>';
+    print '<a href="../registration/index.php">もどる</a>';
+    break;
 
-                case $_SESSION['horenso']:
-                print '<a href="../mypage/mylist.php">質問リスト</a>に保存されました。<br>';
-                require_once('mail.php');
-                print 'mailでほうれんそうをしました。<br>';
-                print '<a href="../registration/index.php">もどる</a>';
-                break;
+    case $_SESSION['horenso']:
+    print '<a href="../mypage/mylist.php?aite='.$whose.'">質問リスト</a>に保存されました。<br>';
+    require_once('mail.php');
+    print 'mailでほうれんそうをしました。<br>';
+    print '<a href="../registration/index.php">もどる</a>';
+    break;
 
-              }
+    }
 ?>
 </div>
 <?php
-/*
-
-              if ($url===$_SESSION['horenso'])
-              {
-                require_once('mail.php');
-                print '<a href="../mypage/mylist.php">mylist</a>に保存されました。<br>';
-                print 'mailでほうれんそうをしました。<br>';
-                print '<a href="../registration/index.php">もどる</a>';
-              }
-              if($url===$_SESSION['shitumon'])
-              {
-                require_once('mail2.php');
-                print '<a href="../mypage/mylist.php">mylist</a>に保存されました。<br>';
-                print 'mailで通知をしました。<br>';
-                print '<a href="../registration/index.php">もどる</a>';
-              }
-*/
-          }
+}
 ?>

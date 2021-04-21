@@ -1,25 +1,17 @@
 <?php
-require_once('../hensu.php');
+require_once('../sanitize.php');
 
           $post=sanitize($_POST);
           $name=$post['name'];
           $pass=$post['pass'];
+          //次からはhash()を使う。
           $pass=md5($pass);
 
           try
           {
-              require_once '../db.php';
-              $db = new DB();
-              $dbh = $db->dbConect();
-
-              $sql='SELECT name,code FROM member WHERE name=? AND pass=?';
-              $stmt=$dbh->prepare($sql);
-              $data=array();
-              $data[]=$name;
-              $data[]=$pass;
-              $stmt->execute($data);
-              $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-              $dbh=null;
+              require_once '../new-db/new-select.php';
+              $SelectDb = new SelectDb();
+              $rec = $SelectDb->selectDb2($name, $pass);
 
               if($rec==true)
               {
@@ -57,7 +49,8 @@ require_once('../hensu.php');
             }
             catch (\Exception $e)
             {
-              print '障害発生中';
+              exit ('障害発生中');
+              var_dump($e);
             }
 ?>
 </body>

@@ -1,8 +1,8 @@
 <?php
-require_once('libs/consts/AppConstants.php');
+//require_once('libs/consts/AppConstants.php');
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION['login'])==false)
+if(isset($_SESSION['login']) == false)
 {
   print 'ログインしていません。';
   print '<a href="../registration/login.html">ログインへ</a>';
@@ -10,34 +10,31 @@ if(isset($_SESSION['login'])==false)
 }
 else
 {
+  $rec = null;
       //自分のコード
-      $honnin=$_SESSION['code'];
+      $honnin = $_SESSION['code'];
       //相手のコード
-      if(isset($_GET['code'])==true)
+      if(isset($_GET['code']) == true)
       {
-          $code=$_GET['code'];
+          $code = $_GET['code'];
       }
       else
       {
-          $code=0;
+          $code = 0;
       }
       try
       {
-          require_once '../db.php';
-          $db = new DB();
+          require_once '../new-db/new-select.php';
+          $SelectDb = new SelectDb();
 
-          //自分のコード
-          if(empty($_GET['code'])==true)
+          //ログインか登録から。
+          if(empty($_GET['code']) == true)
           {
-              $sql="SELECT *
-                    FROM now
-                    WHERE whose = $honnin";
-              $rec = $db->dbSelect($sql);
-
-              $count=count($rec);
+              $rec = $SelectDb->selectDb4($honnin);
+              $count = count($rec);
               if($count>0)
               {
-                $rec=$rec[$count-1];
+                $rec = $rec[$count-1];
               }
               require_once './hozyo.php';
           }
@@ -46,11 +43,7 @@ else
               if($code==$honnin)
               {
                 //リストから自分のマイページ
-                $sql="SELECT *
-                      FROM now
-                      WHERE whose = $honnin";
-                $rec = $db->dbSelect($sql);
-
+                $rec = $SelectDb->selectDb4($honnin);
                 $count=count($rec);
                 if($count>0)
                 {
@@ -61,15 +54,11 @@ else
               else
               {
                 //リストから他の人のマイページ
-                $sql="SELECT *
-                      FROM now
-                      WHERE whose = $code";
-                $rec = $db->dbSelect($sql);
-
-                $count=count($rec);
+                $rec = $SelectDb->selectDb5($code);
+                $count = count($rec);
                 if($count>0)
                 {
-                  $rec=$rec[$count-1];
+                  $rec = $rec[$count-1];
                 }
                 require_once './hozyo.php';
               }
@@ -78,7 +67,7 @@ else
       catch (\Exception $e)
       {
           print 'ただいま障害中です。<br>前回のデータを読み取れませんでした。<br>';
-          print '<a href="../registration/index.php">もどる</a>';
+          exit ('<a href="../registration/index.php">もどる</a>');
       }
 ?>
 <div class="header">
@@ -87,35 +76,43 @@ else
                 <img src="../favicon/p-favicon3.png" alt="?"><h1>しつもん</h1>
               </a>
 </div>
+                <!--登録orログインから。-->
 <?php           if(empty($code)==true)
                 {
                   print $_SESSION['name'];
                   print 'さんのマイページ。<br>今日も頑張ろう。';
                 }
+                //member-listから。
                 else
                 {
                     try
                     {
-                        if($code==$honnin)
-                        {
-                          print $_SESSION['name'];
-                          print 'さんのマイページ。<br>今日も頑張ろう。';
-                        }
-                        else
-                        {
-                          $sql='SELECT name FROM member WHERE code=?';
-                          $stmt=$dbh->prepare($sql);
-                          $data[]=$code;
-                          $stmt->execute($data);
-                          $rec3=$stmt->fetch(PDO::FETCH_ASSOC);
-                          $dbh=null;
-                          print $rec3['name'];
-                          print 'さんのページです。<br>注意書きによく目を通してしつもんしましょう。';
-                        }
+                      //member-listから自分のマイページへ。
+                      if($code == $honnin)
+                      {
+                        print $_SESSION['name'];
+                        print 'さんのマイページ。<br>今日も頑張ろう。';
+                      }
+                      //member-listから他の人のマイページへ。
+                      else
+                      {
+/*                        $sql='SELECT name FROM member WHERE code=?';
+                        $stmt=$dbh->prepare($sql);
+                        $data[]=$code;
+                        $stmt->execute($data);
+                        $rec3=$stmt->fetch(PDO::FETCH_ASSOC);
+                        $dbh=null;
+                        print $rec3['name'];
+*/
+                        $rec = $SelectDb->selectDb52($code);
+                        print $rec['name'];
+                        print 'さんのページです。<br>注意書きによく目を通してしつもんしましょう。';
+                      }
                     }
                     catch (\Exception $e)
                     {
                         print '誰のマイページかわかりません。ログインしなおしてください。';
+                        var_dump($e);
                     }
                 }
 ?>

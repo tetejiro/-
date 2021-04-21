@@ -13,69 +13,65 @@
 <body>
 <main>
 <div class="header">
-                  <img src="../favicon/p-favicon4.png" alt="?">
+    <img src="../favicon/p-favicon4.png" alt="?">
 <div class="kotoba">
 <div class="kotoba1">
-                  <h3>編集する人を選択してください。</h3>
+    <h3>編集する人を選択してください。</h3>
 </div>
 </div>
 </div>
 <?php
-                    require_once '../db.php';
-                    $db = new DB();
-                    $dbh = $db->dbConect();
+    require_once '../new-db/new-select.php';
+    $SelectDb = new SelectDb();
+    $rec = $SelectDb->selectDb6();
 
-                  $sql='SELECT year,member. code,name FROM member';
-                  $stmt=$dbh->prepare($sql);
-                  $stmt->execute();
-                  $rec=$stmt->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
-                  $dbh=null;
-                  ksort($rec);
-//                ↑ https://kinocolog.com/pdo_fetch_pattern/ の下の方参照
+    ksort($rec);
+// ↑ https://kinocolog.com/pdo_fetch_pattern/ の下の方参照
 
 //                登録がない場合はrecがないからIF。
 ?>
 <div class="waku">
 <?php
-                  if(isset($rec)==true)
-                  {
-                      foreach ($rec as $key => $hito)
-                      {
-                            print '<fieldset>';
-                            print '<legend>';
-                            print $key.'期';
-                            print '</legend>';
+    if(isset($rec)==true)
+    {
+        foreach ($rec as $key => $hito)
+        {
+            print '<fieldset>';
+            print '<legend>';
+                    if($key === 6){ print 'シニア'; }else{
+            print $key.'期';}
+            print '</legend>';
 
-                            foreach ($hito as $year_member)
-                            {
-                                $code=$year_member['code'];
-                                $name=$year_member['name'];
-                                print '<div class="namae">';
-                                print '<form method="post" action="./control-branch.php">';
-                                print '<label>';
-                                print '<input type="radio" class="name" name="code" value="'.$code.'">';
-                                print $name;
-                                print 'さん';
-                                print '</label>';
-                                print '</div>';
-                                print '<br>';
-                            }
+            foreach ($hito as $year_member)
+            {
+                $code=$year_member['code'];
+                $name=$year_member['name'];
+                print '<div class="namae">';
+                print '<form method="post" action="./control-branch.php">';
+                print '<label>';
+                print '<input type="radio" class="name" name="code" value="'.$code.'">';
+                print $name;
+                print 'さん';
+                print '</label>';
+                print '</div>';
+                print '<br>';
+            }
 
-                      print '</fieldset>';
-                      }
+            print '</fieldset>';
+        }
 ?>                </div>
-                  <div class="menu">
-                  <input type="submit" name="edit" value="編集する">
-                  <input type="submit" name="delete" value="削除する">
-                  </form>
-                  <a href="../registration/index.php">もどる</a>
-                  </div>
+    <div class="menu">
+    <input type="submit" name="edit" value="編集する">
+    <input type="submit" name="delete" value="削除する">
+    </form>
+    <a href="../registration/index.php">もどる</a>
+    </div>
 <?php
 }
-                  if(isset($rec)==false)
-                  {
-                      print 'まだ登録がありません。';
-                  }
+    if(isset($rec)==false)
+    {
+        print 'まだ登録がありません。';
+    }
 ?>
 </main>
 </body>

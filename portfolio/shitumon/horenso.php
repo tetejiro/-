@@ -1,30 +1,24 @@
 <?php
 session_start();
 session_regenerate_id(true);
-    if(isset($_SESSION['login'])==false)
-    {
-            print 'ログインしてください。';
-            print '<a href="../registration/login.html">ログインページへ</a>';
-    }
-    else
-    {
-            $_SESSION['url']=array();
-            $_SESSION['shitumon']=0;
-            $_SESSION['horenso']=1;
-            $_SESSION['url']=$_SESSION['horenso'];
-            $code=$_GET['code'];
+if(isset($_SESSION['login'])==false)
+{
+        print 'ログインしてください。';
+        print '<a href="../registration/login.html">ログインページへ</a>';
+}
+else
+{
+        //このsession[url]の初期化が効かない理由が分からない。
+        $_SESSION['url']=array();
+        $_SESSION['shitumon']=0;
+        $_SESSION['horenso']=1;
+        $_SESSION['url']=$_SESSION['horenso'];
+        $code=$_GET['code'];
 
-            require_once '../db.php';
-            $db = new DB();
-            $dbh = $db->dbConect();
-
-            $sql='SELECT name FROM member WHERE code=?';
-            $stmt=$dbh->prepare($sql);
-            $data[]=$code;
-            $stmt->execute($data);
-            $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-            $stmt=null;
-            $name=$rec['name'];
+        require_once '../new-db/new-select.php';
+        $SelectDb = new SelectDb();
+        $rec = $SelectDb->selectDb10($code);
+        $name = $rec['name'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
