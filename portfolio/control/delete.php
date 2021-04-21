@@ -17,31 +17,17 @@
 
 try
 {
-
   $code=$_GET['code'];
 
-  require_once '../db.php';
-  $db = new DB();
-  $dbh = $db->dbConect();
-
-  $sql='SELECT name FROM member WHERE code=?';
-  $stmt=$dbh->prepare($sql);
-  $data[]=$code;
-  $stmt->execute($data);
-
-  $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+  require_once '../new-db/new-select.php';
+  $SelectDb = new SelectDb();
+  $rec = $SelectDb->selectDb10($code);
   $name=$rec['name'];
-
-  $dbh=null;
-
 }
 catch(Exception $e)
 {
-  print 'ただいま障害により大変ご迷惑をおかけしております。';
-  exit();
+  exit('ただいま障害により大変ご迷惑をおかけしております。');
 }
-
-
 ?>
 <p>このスタッフを削除してよろしいですか？</p>
 <br>

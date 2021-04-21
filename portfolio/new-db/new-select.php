@@ -29,7 +29,7 @@ function selectDb1()
         $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $dbh = null;
     }
-    catch(\Exception $e)
+    catch(Exception $e)
     {
         var_dump($e);
         exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -56,7 +56,7 @@ function selectDb1()
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -81,7 +81,7 @@ function selectDb1()
             $sql = 'UNLOCK TABLES';
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -106,7 +106,7 @@ function selectDb1()
             $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -131,7 +131,7 @@ function selectDb1()
             $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -156,7 +156,7 @@ function selectDb1()
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -180,7 +180,7 @@ function selectDb1()
             $rec = $stmt->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -206,7 +206,7 @@ function selectDb1()
             $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -232,7 +232,7 @@ function selectDb1()
             $aite = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -257,7 +257,7 @@ function selectDb1()
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -265,7 +265,7 @@ function selectDb1()
         return $rec;
     }
 
-    //10.select.phpとshitumon.php
+    //10.select.phpとshitumon.phpとdelete.php
     function selectDb10($code)
     {
         $ConstDb = new ConstDb();
@@ -282,7 +282,7 @@ function selectDb1()
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
@@ -290,7 +290,7 @@ function selectDb1()
         return $rec;
     }
 
-    //11.done.php
+    //11.done.phpと、edit.php
     function selectDb11($code)
     {
         $ConstDb = new ConstDb();
@@ -307,7 +307,7 @@ function selectDb1()
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh = null;
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
