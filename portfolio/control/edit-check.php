@@ -15,7 +15,7 @@
 <div class="mi">
 
 <?php
-require_once '../hensu.php';
+require_once '../sanitize.php';
 $post=sanitize($_POST);
 $code=$post['code'];
 $name=$post['name'];

@@ -17,29 +17,18 @@
 
 try
 {
-
   $code=$_GET['code'];
 
-  require_once '../db.php';
-  $db = new DB();
-  $dbh = $db->dbConect();
-
-  $sql='SELECT name,mail FROM member WHERE code=?';
-  $stmt=$dbh->prepare($sql);
-  $data[]=$code;
-  $stmt->execute($data);
-
-  $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+  require_once '../new-db/new-select.php';
+  $SelectDb = new SelectDb();
+  $rec = $SelectDb->selectDb11($code);
   $name=$rec['name'];
   $mail=$rec['mail'];
-
-  $dbh=null;
-
 }
 catch(Exception $e)
 {
   print 'ただいま障害により大変ご迷惑をおかけしております。';
-  exit();
+  exit('<a href="../registration/login.html">ログイン</a>し直してください。');
 }
 
 
@@ -62,7 +51,7 @@ catch(Exception $e)
   <option value="3">3</option>
   <option value="4">4</option>
   <option value="5">5</option>
-  <option value="シニア">シニア</option>
+  <option value="6">シニア</option>
 </select>
 期 <br><br>
 メールアドレス<br>

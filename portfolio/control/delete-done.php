@@ -17,25 +17,16 @@
 
 try
 {
+    $code=$_POST['code'];
 
-$code=$_POST['code'];
-
-require_once '../db.php';
-$db = new DB();
-$dbh = $db->dbConect();
-
-$sql='DELETE FROM member WHERE code=?';
-$stmt=$dbh->prepare($sql);
-$data[]=$code;
-$stmt->execute($data);
-
-$dbh=null;
-
+    require_once '../new-db/new-delete.php';
+    $UpdateDb = new UpdateDb();
+    $UpdateDb->updateDb1($code);
 }
 catch (Exception $e)
 {
-  print 'ただいま障害により大変ご迷惑をおかけしております。';
-  exit();
+  var_dump($e);
+  exit('ただいま障害により大変ご迷惑をおかけしております。');
 }
 
 ?>

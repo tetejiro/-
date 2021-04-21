@@ -17,7 +17,7 @@
 
 try
 {
-      require_once '../hensu.php';
+      require_once '../sanitize.php';
       $post=sanitize($_POST);
       $code=$post['code'];
       $name=$post['name'];
@@ -25,28 +25,15 @@ try
       $pass=$post['pass'];
       $year=$post['year'];
 
-      require_once '../db.php';
-      $db = new DB();
-      $dbh = $db->dbConect();
-
-      $sql='UPDATE member SET name=?,year=?,pass=?,mail=? WHERE code=?';
-      $stmt=$dbh->prepare($sql);
-      $data[]=$name;
-      $data[]=$year;
-      $data[]=$pass;
-      $data[]=$mail;
-      $data[]=$code;
-      $stmt->execute($data);
-
-      $dbh=null;
-
-      }
-      catch (Exception $e)
-      {
-        print $e;
-        print 'ただいま障害により大変ご迷惑をおかけしております。';
-        exit();
-      }
+      require_once '../new-db/new-update.php';
+      $UpdateDb = new UpdateDb();
+      $UpdateDb->updateDb1($name, $year, $pass, $mail, $code);
+}
+catch (\Exception $e)
+{
+      print $e;
+      exit('ただいま障害により大変ご迷惑をおかけしております。');
+}
 
 ?>
 
