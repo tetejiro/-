@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>しつもん</title>
 <meta name="description" content="しつもんするための便利なツール。しつもん上手になって安心して業務に取り組もう。">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- css -->
 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">

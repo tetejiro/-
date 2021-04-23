@@ -55,3 +55,40 @@ a{
   display: flex;
   justify-content: space-around;
 }
+@media (max-width: 600px)
+{
+  /*全体*/
+  main{
+    width: 100vw;
+    height: 100vh;
+    padding: 10% 5%;
+  }
+/*ヘッダー*/
+  .header{
+    width: 100vw;
+  }
+  .kotoba{
+    width: 90%;
+  }
+/*リスト*/
+  .waku{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+  }
+  legend{
+    color: #38b9e0;
+  }
+  fieldset{
+    width: 30vw;
+    height: 23vh;
+    margin-top: 2.5rem;
+  }
+  .menu{
+    width: 90vw;
+  }
+  .menu *{
+    width: 20%;
+    padding-top: 3rem;
+  }
+}

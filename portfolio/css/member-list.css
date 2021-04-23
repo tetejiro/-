@@ -12,7 +12,8 @@ main{
 }
 .waku{
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
   height: 50%;
   width: 85%;
 }
@@ -62,6 +63,8 @@ a{
   }
 /*リスト*/
   .waku{
+    display: flex;
+    flex-wrap: wrap;
     width: 90vw;
     padding-top: 5vh;
   }

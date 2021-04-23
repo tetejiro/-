@@ -25,12 +25,14 @@ else
             <h3><img src="../favicon/p-favicon.png"> 過去のほうれんそう・質問リスト</h3><br>
   <div class="zentai">
   <?php
-  //マイページからマイリスト
-  $honnin=$_SESSION['code'];
   //メール送信からマイリスト
   if(isset($_GET['aite']) == true)
   {
     $honnin = $_GET['aite'];
+  }
+  else{
+  //マイページからマイリスト
+  $honnin=$_SESSION['code'];
   }
 
   require_once '../new-db/new-select.php';
