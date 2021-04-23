@@ -111,7 +111,9 @@ nav > a:hover , nav > p:hover{
   margin-bottom: 8vh;
 }
 .nav2{
+  display: flex;
   width: 30vw;
+  justify-content: flex-end;
 }
 .nav2>a ,.nav2>p{
   display: inline-block;
@@ -120,7 +122,7 @@ nav > a:hover , nav > p:hover{
   width: 10vw;
   height: 5vh;
 }
-.nav2 > a:hover , .nav2>p:hover{
+.nav2>p:hover{
   width: 10vw;
   height: 5vh;
   padding: 0.25em 0.5em;
@@ -230,6 +232,32 @@ nav > a:hover , nav > p:hover{
   }
 
   /*下のナビ*/
+  .navzentai{
+    width: 90vw;
+  }
+  .nav2{
+    display: flex;
+    justify-content:space-around ;
+    text-align: center;
+    width: 90vw;
+    border-top: solid 3.5px #2b2b2b;
+    padding-top: 3vh;
+  }
+  .nav2>p{
+    display: inline-block;
+    margin-top: 2.5vh;
+    width: 30vw;
+    height: 5vh;
+  }
+
+  .nav2> p:hover{
+    padding: 0em 0em;
+    width: 30vw;
+    background-color: #F3F3F3;
+    height: 2rem;
+  }
+
+/*
   .nav2{
     display: flex;
     justify-content: space-around;
@@ -247,10 +275,5 @@ nav > a:hover , nav > p:hover{
   .nav2>p{
     width: 19vw;
   }
-  .nav2>p:hover{
-    padding-top: 0%;
-    width: 30vw;
-    background-color: #F3F3F3;
-    height: 2rem;
-  }
+  */
 }
