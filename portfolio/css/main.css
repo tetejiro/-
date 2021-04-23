@@ -27,13 +27,16 @@ h2{
   width: 8%;
   text-align: center;
 }
-.ue2{
+.ue2>ul{
   height: 25rem;
 }
-.ue2 > li{
+ul>li{
+  display: block;
+  height: 4vh;
+}
+.ue2 >ul> li{
   display: block;
   height: 5rem;
-  background-color: #B0DEEC;
 }
 .shitumon{
   display: grid;
