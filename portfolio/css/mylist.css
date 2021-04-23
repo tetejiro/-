@@ -57,3 +57,14 @@ td{
 .mi > p{
   height: 5rem;
 }
+@media (max-width: 600px)
+{
+  body {
+    width: 100vw;
+  }
+  .zentai >a{
+    width: 20vw !important;
+    height: 2rem !important;
+    padding-top: 0.25rem;
+  }
+}

@@ -79,8 +79,10 @@ else
                 <!--登録orログインから。-->
 <?php           if(empty($code)==true)
                 {
+                  print '<div class="migi">';
                   print $_SESSION['name'];
-                  print 'さんのマイページ。<br>今日も頑張ろう。';
+                  print 'さんのマイページ<br>今日も頑張ろう。';
+                  print '</div>';
                 }
                 //member-listから。
                 else
@@ -90,8 +92,10 @@ else
                       //member-listから自分のマイページへ。
                       if($code == $honnin)
                       {
+                        print '<div class="migi">';
                         print $_SESSION['name'];
-                        print 'さんのマイページ。<br>今日も頑張ろう。';
+                        print 'さんのマイページ<br>今日も頑張ろう。';
+                        print '</div>';
                       }
                       //member-listから他の人のマイページへ。
                       else
@@ -106,12 +110,16 @@ else
 */
                         $rec = $SelectDb->selectDb52($code);
                         print $rec['name'];
-                        print 'さんのページです。<br>注意書きによく目を通してしつもんしましょう。';
+                        print '<div class="migi">';
+                        print 'さんのページ<br>注意書きによく目を通してしつもんしましょう。';
+                        print '</div>';
                       }
                     }
                     catch (Exception $e)
                     {
+                        print '<div class="migi">';
                         print '誰のマイページかわかりません。ログインしなおしてください。';
+                        print '</div>';
                         var_dump($e);
                     }
                 }
@@ -122,6 +130,7 @@ else
 <head>
 <meta charset="utf-8">
 <meta title="しつもん">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- css -->
 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
@@ -130,7 +139,7 @@ else
 <link rel="icon" type="image/png" href="../favicon/p-favicon.png">
 </head>
 <body>
-</div>
+</div><!--.header-->
 <nav>
   <?php
       if(empty($code)==true)
@@ -159,24 +168,24 @@ else
 </nav>
               <form action="mypage-branch.php" method="post">
 <div class="zenhan">
-<div class="zenhan1">
-<div class="now">
-                今は何をしていますか？ <br><br>
-                <textarea class="area" name="task">
-                  <?php if(empty($task)==false){ print $task; } ?>
-                </textarea><br><br><br>
-</div>
-<div class="time">
-                どれくらいかかりそうですか？ <br><br>
-                <input type="time" name="bytime1" value="<?php if(empty($bytime1)==false){ print $bytime1; } ?>">
-                ～
-                <input type="time" name="bytime2" value="<?php if(empty($bytime2)==false){ print $bytime2; } ?>">
-                <br><br><br>
-</div>
-</div>
-<div class="emotion">
+    <div class="zenhan1">
+      <div class="now">
+                  今は何をしていますか？ <br><br>
+                  <textarea class="area" name="task">
+                    <?php if(empty($task)==false){ print $task; } ?>
+                  </textarea><br><br><br>
+      </div><!--now-->
+      <div class="time">
+                  どれくらいかかりそうですか？ <br><br>
+                  <input type="time" name="bytime1" value="<?php if(empty($bytime1)==false){ print $bytime1; } ?>">
+                  ～
+                  <input type="time" name="bytime2" value="<?php if(empty($bytime2)==false){ print $bytime2; } ?>">
+                  <br><br><br>
+        </div><!--time-->
+    </div><!--zenhan1-->
+    <div class="emotion">
                   <p>今日の気分は？</p><br>
-                  <div class="kibun">
+        <div class="kibun">
                   <label><img src="../favicon/kao1.png"><br>
                     <input type="radio" name="emotion" value="余裕"
                       <?php
@@ -226,61 +235,61 @@ else
                       }
                       ?> >手伝ってほしい
                   </label>
-</div>
-</div>
-</div>
+        </div><!--kibun-->
+      </div><!--emotion-->
+</div><!--zenhan-->
 <div class="kouhan">
-<div class="kohan1">
-<div class="zikan">
+  <div class="kohan1">
+    <div class="zikan">
                 都合がいい時間 <br><br>
                 <input type="time" name="time1" value="<?php if(empty($time1)==false){ print $time1; } ?>">
                 ～
                 <input type="time" name="time2" value="<?php if(empty($time2)==false){ print $time2; } ?>">
                 <br><br><br>
-</div>
-<div class="tyui">
+      </div><!--zikan-->
+    <div class="tyui">
                 質問時の注意事項 <br><br>
                 <textarea
-                class="area" name="attention" placeholder="※質問する前に見ておいてほしいことを書いてください。" rows="4" cols="50"><?php
+                class="area" name="attention" placeholder="※質問する前に見ておいてほしいことを書いてください。"><?php
                 if(isset($attention)==true){ print $attention; } ?>
                 </textarea><br><br>
-</div>
-</div>
+      </div><!--tyui-->
+  </div><!--kohan1-->
 <div class="makasete">
                 ここは私に任せて！ <br><br><br>
 <div class="makasete1">
                 1<br>
-                  <textarea class="a" type="text" name="strong1"><?php if(empty($strong1)==false){ print $strong1; } ?>
+                  <textarea class="a area" type="text" name="strong1"><?php if(empty($strong1)==false){ print $strong1; } ?>
                   </textarea><br>
                 2<br>
-                  <textarea class="b" type="text" name="strong2"><?php if(empty($strong2)==false){ print $strong2; } ?>
+                  <textarea class="b area" type="text" name="strong2"><?php if(empty($strong2)==false){ print $strong2; } ?>
                   </textarea><br>
                 3<br>
-                  <textarea class="c" type="text" name="strong3"><?php if(empty($strong3)==false){ print $strong3; } ?>
+                  <textarea class="c area" type="text" name="strong3"><?php if(empty($strong3)==false){ print $strong3; } ?>
                   </textarea><br><br>
                   <input type="hidden" name="code" value="<?php print $code; ?>">
-</div>
-</div>
-</div>
+</div><!--makasete1-->
+</div><!--makasete-->
+</div><!--zenhan-->
 <div class="navzentai">
 <div class="nav2">
 <?php
                 if(empty($code)==true)
                 {
-                    print '<input id="kousin" type="submit" value="更新する">';
+                    print '<p><input id="kousin" type="submit" value="更新する"></p>';
                     print '</form>';
                 }
                 else
                 {
                     if($code==$honnin)
                     {
-                        print '<input id="kousin" type="submit" value="更新する">';
+                        print '<p><input id="kousin" type="submit" value="更新する"></p>';
                         print '</form>';
                     }
                 }
 
-                print '<a href="../mypage/mylist.php">質問リスト</a>';
-                print '<a href="member-list.php">メンバーリスト</a>';
+                print '<p><a href="../mypage/mylist.php">質問リスト</a></p>';
+                print '<p><a href="member-list.php">メンバーリスト</a></p>';
 
                 if(empty($code)==false)
                 {
@@ -290,8 +299,8 @@ else
 <?php             }
                 }
 ?>
-</div>
-</div>
+</div><!--nav2-->
+</div><!--navzentai-->
 </body>
 </html>
 <?php
