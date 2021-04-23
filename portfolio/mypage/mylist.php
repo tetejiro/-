@@ -13,6 +13,7 @@ else
   <head>
   <meta charset="utf-8">
   <meta title="しつもん">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- css -->
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
@@ -85,9 +86,13 @@ else
         <th>試したこと・その他</th><td><?php print $rec[$i]['try0']; ?></td>
         </tr>
         </table><br><br>
-        </div>
-        </div> <?php
+        </div><!--zentai3-->
+        </div><!--zentai2--> <?php
       }
       print '<a href="../mypage/mypage.php?code='.$honnin.'">もどる</a>';
+      ?>
+      </body>
+      </html>
+<?php
 }
 }
