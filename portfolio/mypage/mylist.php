@@ -89,7 +89,9 @@ else
         </div><!--zentai3-->
         </div><!--zentai2--> <?php
       }
+      print '<div class="modoru">';
       print '<a href="../mypage/mypage.php?code='.$honnin.'">もどる</a>';
+      print '</div>';
       ?>
       </body>
       </html>
