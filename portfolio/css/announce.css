@@ -34,3 +34,26 @@ a {
   color: black;
   margin-left: 5vw;
 }
+@media (max-width: 600px)
+{
+  body{
+    width: 100vw;
+    height: 100vh;
+  }
+  .title{
+    width: 65vw;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .title>p:nth-child(2){
+    margin-left: 1rem;
+  }
+  textarea{
+    width: 80vw;
+    height: 20vh;
+  }
+  .button>a{
+    display: block;
+    margin-left: 15vw;
+  }
+}

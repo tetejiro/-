@@ -32,12 +32,10 @@ td{
   border-bottom: #e2ecee solid 2.5px;
   padding-left: 3rem;
 }
-.zentai > a{
+.zentai>.modoru>a{
   display: inline-block;
   margin-left: 50%;
-  margin-right: 50%;
-  width: 7%;
-  text-align: center;
+  width: 7vw;
   text-decoration: none;
   color: black;
   margin-bottom: 4%;
@@ -62,9 +60,15 @@ td{
   body {
     width: 100vw;
   }
-  .zentai >a{
-    width: 20vw !important;
-    height: 2rem !important;
-    padding-top: 0.25rem;
+  h3{
+    width: 60vw;
+  }
+  .zentai>.modoru>a {
+    display: inline-block;
+    margin-left: 45%;
+    width: 20vw;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 5vh;
   }
 }

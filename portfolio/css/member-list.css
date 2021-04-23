@@ -12,6 +12,8 @@ main{
 }
 .waku{
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   height: 50%;
   width: 85%;
 }
@@ -45,8 +47,32 @@ a{
   text-decoration: none;
   color: #2b2b2b;
 }
-/*input[type=radio] {
-display: none;
-color: #2b2b2b;
+@media (max-width: 600px)
+{
+  /*全体*/
+  main{
+    width: 100vw;
+    padding-left: 5vw;
+  }
+/*ヘッダー*/
+  .header{
+    width: 100vw;
+  }
+  .kotoba{
+    width: 90%;
+  }
+/*リスト*/
+  .waku{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+    padding-top: 5vh;
+  }
+  legend{
+    color: #38b9e0;
+  }
+  fieldset{
+    width: 30vw;
+    height: 23vh;
+  }
 }
-*/

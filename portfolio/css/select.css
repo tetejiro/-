@@ -27,3 +27,11 @@ p{
   margin-right: auto;
   line-height: 2.5rem;
 }
+@media (max-width: 600px)
+{
+  .bun{
+    width: 80vw;
+    position: relative;
+    top: 40vh;
+  }
+}

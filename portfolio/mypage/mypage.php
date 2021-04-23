@@ -100,7 +100,7 @@ else
                       //member-listから他の人のマイページへ。
                       else
                       {
-/*                        $sql='SELECT name FROM member WHERE code=?';
+/*                      $sql='SELECT name FROM member WHERE code=?';
                         $stmt=$dbh->prepare($sql);
                         $data[]=$code;
                         $stmt->execute($data);
@@ -109,8 +109,8 @@ else
                         print $rec3['name'];
 */
                         $rec = $SelectDb->selectDb52($code);
-                        print $rec['name'];
                         print '<div class="migi">';
+                        print $rec['name'];
                         print 'さんのページ<br>注意書きによく目を通してしつもんしましょう。';
                         print '</div>';
                       }
@@ -295,7 +295,7 @@ else
                 {
                   if ($code!==$honnin)
                   {
-?>                      <a id="shitu" href="select.php?code=<?php print $code; ?>">しつもんする</a>
+?>                   <p><a id="shitu" href="select.php?code=<?php print $code; ?>">しつもんする</a></p>
 <?php             }
                 }
 ?>
