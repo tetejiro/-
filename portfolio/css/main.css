@@ -15,6 +15,8 @@ a{
 }
 .ue1{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 6%;
 }
@@ -28,8 +30,10 @@ h2{
 .ue2{
   height: 25rem;
 }
-.ue2 > p{
-  height: 18%;
+.ue2 > li{
+  display: block;
+  height: 5rem;
+  background-color: #B0DEEC;
 }
 .shitumon{
   display: grid;
@@ -52,4 +56,64 @@ textarea {
 }
 .menu > a{
   display: block;
+}
+@media (max-width: 600px)
+{
+  /*全体*/
+  body{
+    width: 100vw;
+  }
+  /*ヘッダー*/
+  .ue1{
+    display: flex;
+    justify-content: center;
+    height: 15vh;
+    line-height: 2;
+  }
+  h2{
+    width: 18vw;
+  }
+  .ue1>p{
+    width: 55vw;
+    text-align: center;
+    margin-bottom: 5vh;
+  }
+  .ue2{
+    padding: 1.5vh 2.5vh 1.5vh 2vh;
+    height: auto;
+  }
+  li{
+    display: inline-block;
+    margin-bottom: 1rem;
+    height: 4rem;
+    width: 100%;
+    padding-top: 1rem;
+    line-height: 1.5;
+  }
+  ul{
+    width: 100%;
+    list-style-type: disc;
+    list-style-position: outside;
+  }
+  .shitumon{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+  }
+  textarea{
+    width: 80%;
+    height: 20%;
+  }
+  .menu{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .menu>a{
+    display: block;
+    width: 20%;
+    margin-left: 1rem;
+  }
 }
