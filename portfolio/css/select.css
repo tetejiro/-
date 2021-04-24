@@ -33,5 +33,9 @@ p{
     width: 80vw;
     position: relative;
     top: 40vh;
+    height: auto;
+  }
+  a{
+    margin: 1rem;
   }
 }
