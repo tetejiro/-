@@ -44,6 +44,7 @@
                         var_dump($e);
                       }
                   ?>
+            <div class="bottom">
             <p>周知事項</p>
             <div class="announce">
               <div class="content">
@@ -56,6 +57,7 @@
                 </div>
                   <a href="announce.php"><img src="../favicon/haguruma.png" alt="追加"></a>
               </div>
+            </div>
         </div>
     </main>
   </body>
