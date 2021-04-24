@@ -85,6 +85,9 @@ textarea {
     padding: 1.5vh 2.5vh 1.5vh 2vh;
     height: auto;
   }
+  .ue2>ul{
+    height: auto;
+  }
   li{
     display: inline-block;
     margin-bottom: 1rem;

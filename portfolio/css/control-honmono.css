@@ -60,7 +60,6 @@ a{
   /*全体*/
   main{
     width: 100vw;
-    height: 100vh;
     padding: 10% 5%;
   }
 /*ヘッダー*/
@@ -81,7 +80,6 @@ a{
   }
   fieldset{
     width: 30vw;
-    height: 23vh;
     margin-top: 2.5rem;
   }
   .menu{

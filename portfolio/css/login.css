@@ -88,4 +88,7 @@ main{
   .naiyo > a {
     width: 50vw;
   }
+  .botan{
+    width: auto;
+  }
 }

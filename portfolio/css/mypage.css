@@ -152,6 +152,7 @@ nav > a:hover , nav > p:hover{
   }
   .hidari>img{
     width: 1.5vw;
+    margin-bottom: 0.25rem;
   }
   .hidari>a > h1{
     display: none;
@@ -174,6 +175,7 @@ nav > a:hover , nav > p:hover{
   nav> a, nav>p{
     display: block;
     width: 30vw;
+    padding-bottom: 0.5rem;
   }
   nav > a:hover , nav > p:hover{
     display: block;
@@ -250,7 +252,7 @@ nav > a:hover , nav > p:hover{
     height: 5vh;
   }
 
-  .nav2> p:hover{
+  .nav2>p:hover{
     padding: 0em 0em;
     width: 30vw;
     background-color: #F3F3F3;

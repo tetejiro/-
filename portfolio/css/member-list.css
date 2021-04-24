@@ -53,10 +53,12 @@ a{
   main{
     width: 100vw;
     padding-left: 5vw;
+    height: auto;
   }
 /*ヘッダー*/
   .header{
     width: 100vw;
+    margin-bottom: 0%;
   }
   .kotoba{
     width: 90%;
@@ -66,13 +68,16 @@ a{
     display: flex;
     flex-wrap: wrap;
     width: 90vw;
-    padding-top: 5vh;
   }
   legend{
     color: #38b9e0;
+    padding-top: 5.25vh;
   }
   fieldset{
     width: 30vw;
-    height: 23vh;
+  }
+  fieldset>a{
+    display: inline-block;
+    padding-top: 0.75rem;
   }
 }
