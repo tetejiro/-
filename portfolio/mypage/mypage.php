@@ -276,7 +276,7 @@ else
 <?php
                 if(empty($code)==true)
                 {
-                    print '<p><input id="kousin" type="submit" value="更新する"></p>';
+                    print '<p><input id="kousin" type="submit" value="更新"></p>';
                     print '</form>';
                 }
                 else
