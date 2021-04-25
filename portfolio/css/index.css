@@ -101,15 +101,20 @@ h1{
   .left {
     display: none;
   }
+  main,body{
+    width: 100vw;
+    height: 100%;
+  }
   .right {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #FFFFFF;
   }
   /*ナビ（上）*/
   nav {
-    height: 40vh;
-    width: 100vw;
+    height: 30%;
+    width: 100%;
+    margin: 0;
     border: solid 0.8rem #B0DEEC;
   }
   #right > nav > ul {
@@ -117,29 +122,29 @@ h1{
     flex-direction: column;
     /*上書き*/
     margin-top: 0px;
-    padding-top: 10px;
   }
   #right > nav > ul > li {
     display: inline-block;
-    background-color: #B0DEEC;
-    width: 30vw;
-    padding-bottom: 1.5em;
-    padding-left: 8px;
-    margin-bottom: 1.5em;
-    border: solid 0.8em #B0DEEC;
+    height: auto;
+    margin-top: 2%;
+    margin-left: 0.5%;
+    border: solid 0.6em #B0DEEC;
   }
   #right > nav > ul > li:first-child{
-    margin-left: 5px;
+    width: 50%;
   }
-  #right > nav > ul > li + li {
-    width: 21vw;
+  #right > nav > ul > li:nth-child(2){
+    width: 50%;
     position: relative;
-    left: 30vw;
+    left: 25%;
+    margin: 2.5% 0%;
   }
   #right > nav > ul > li:last-child {
-    width: 40vw;
+    width: 50%;
     position: relative;
-    left: 51.5vw;
+    left: 49%;
+    margin-top: 0%;
+    margin-bottom: 2%;
   }
   nav > a {
     display: inline-block;
@@ -148,68 +153,24 @@ h1{
   }
 
   h1 {
+    padding: 0%;
     color: black;
-    width: 50vw;
     position: absolute;
-    top: 12vh;
-    left: 20vw;
+    top: 40%;
+    left: 45%;
   }
   /*周知事項（下）*/
+  .bottom{
+    width: 80%;
+    bottom: 5%;
+  }
+  p{
+    padding-left: 2%;
+  }
   .announce {
-    width: 75vw;
-    height: 30vh;
+    width: 100%;
     margin-bottom: 5vh;
   }
 
 
-/*
-  main {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-  }
-  .left {
-    order: 2;
-    width: 100vw;
-  }
-  .right {
-    order: 1;
-    width: 100vw !important;
-  }
-  ul {
-    display: flex;
-    flex-direction: column;
-  }
-  ul > li{
-    /*.rightに対しての大きさになってるから。
-    width: 100vw !important;
-  }
-  .shuchi {
-    background-color: #FFFFFF;
-    width: 100vw;
-  }
-  .announce > a {
-    display: inline;
-  }
-  /*消す
-  .announce {
-    display: flex;
-    justify-content: space-between;
-    width: 100vw !important;
-  }
-/*
-  h1 {
-    color: black;
-    height: 40%;
-    width: 50vw;
-    background-color: #BDBDBD;
-  }
-
-  .hidariwaku {
-    width: 100vw !important;
-  }
-}
-
-*/
 }
