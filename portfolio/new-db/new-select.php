@@ -237,7 +237,11 @@ function selectDb1()
             var_dump($e);
             exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
         }
+        if(!empty($aite)){
         return $aite['name'];
+        }else{
+            return $aite = '名無し';
+        }
     }
 
     //9.select.phpのセレクト文(2)
