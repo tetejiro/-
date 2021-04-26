@@ -1,8 +1,7 @@
 @charset "utf-8";
 body{
-  width: 95vw;
-  margin: 20px;
-  margin-bottom: 10vh;
+  width: 100vw;
+  padding: 5%;
 }
 .area{
   border: solid 3.5px #B0DEEC;
@@ -24,6 +23,7 @@ body{
   border-bottom: 4px solid;
   margin-bottom: 15px;
   padding-bottom: 15px;
+  padding-right: 4%;
 }
 .hidari > img, .hidari > h1{
   display: block;
@@ -67,6 +67,7 @@ nav > a:hover , nav > p:hover{
   background: #F3F3F3;
   border-radius: 15px;
 }
+/*1番目*/
 .kibun{
   margin-left: 23%;
   width: 55%;
@@ -76,8 +77,7 @@ nav > a:hover , nav > p:hover{
   border-radius: 10px;
 }
 .zenhan{
-  padding-top: 5vh;
-  padding-bottom: 10vh;
+  padding: 5%;
   border-bottom: solid 4px #2b2b2b;
 }
 .zenhan1{
@@ -87,15 +87,15 @@ nav > a:hover , nav > p:hover{
 }
 .emotion{
   text-align: center;
+  padding-top: 10%;
 }
 
 /*真ん中*/
 .kohan1{
   height: 50vh;
-  padding-top: 5vh;
+  padding: 10vh 5;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 8vh;
 }
 /*一番下*/
 .a , .b , .c {
@@ -107,11 +107,10 @@ nav > a:hover , nav > p:hover{
 }
 .makasete{
   margin-top: 5vh;
-  padding-top: 5vh;
-  padding-bottom: 8vh;
   margin-bottom: 10vh;
   border-top: solid 4px #2b2b2b;
   border-bottom: solid 4px #2b2b2b;
+  padding: 13vh 0;
 }
 .makasete1{
   display: flex;
@@ -126,7 +125,7 @@ nav > a:hover , nav > p:hover{
   display: inline-block;
   text-align: center;
   margin-top: 2.5vh;
-  margin-right: 1rem;
+  margin-right: 5vw;
   height: 5vh;
 }
 .nav2>p:hover{
@@ -141,17 +140,16 @@ nav > a:hover , nav > p:hover{
   /*共通*/
   body {
     width: 100vw;
-    padding-right: 3vw;
-    margin-bottom: 10vh;
+    padding: 5%;
+    margin: 0%;
   }
   .area{
-    width: 80vw;
+    width: 80%;
     height: 15vh;
   }
   /*ヘッダー*/
   .header {
     border-bottom: none;
-    width: 90vw;
     height: 20vh;
     display: flex;
     flex-direction: column;
@@ -166,8 +164,7 @@ nav > a:hover , nav > p:hover{
   }
   .header>.migi{
     text-align: center;
-    width: 47vw;
-    margin-right: 1vw;
+    width: 75%;
     order: 2;
   }
   .hidari{
@@ -176,27 +173,27 @@ nav > a:hover , nav > p:hover{
 
   /*ナビ*/
   nav{
-    width: 90vw;
     border-bottom: solid 3.5px #2b2b2b;
+    justify-content: space-between;
+    padding-bottom: 3%;
   }
   nav> a, nav>p{
     display: block;
-    width: 30vw;
-    padding-bottom: 0.5rem;
   }
   nav > a:hover , nav > p:hover{
     display: block;
     background: #F3F3F3;
-    width: 30vw;
+    width: auto;
   }
   /*1ブロック目*/
   .zenhan{
-    width: 90vw;
     margin-bottom: 0;
+    padding: 0%;
   }
   .zenhan1{
     display: flex;
     flex-direction: column;
+    padding: 5%;
   }
   .now{
     order: 1;
@@ -206,11 +203,14 @@ nav > a:hover , nav > p:hover{
     margin-bottom: 0;
     height: 10vh;
   }
+  .emotion{
+    padding-bottom: 10%;
+  }
   .emotion>p{
     margin-left: 0%;
   }
   .kibun{
-    width: 87vw;
+    width: 100%;
     margin-left: 0vw;
   }
   .zenhan>p{
@@ -221,36 +221,44 @@ nav > a:hover , nav > p:hover{
     text-align: left;
   }
   /*真ん中*/
+  .zikan{
+    padding-top: 18%;
+  }
+  .kohan{
+    border-bottom: none;
+    width: 90%;
+  }
   .kohan1{
     width: 90vw;
     display: flex;
     flex-direction: column;
     padding: 5vh 0;
+    padding-bottom: 5%;
     height: 45vh;
     margin-bottom: 0%;
   }
   /*１番下*/
   .makasete{
     margin-bottom: 0vh;
-    padding-top: 5vh;
+    padding: 5vh;
+    border-bottom: none;
   }
   .makasete1{
     display: flex;
     flex-direction: column;
-    width: 90vw;
+  }
+  .makasete1>textarea{
+    width: 100%;
   }
 
   /*下のナビ*/
-  .navzentai{
-    width: 90vw;
-  }
   .nav2{
     display: flex;
     justify-content:space-around ;
     text-align: center;
-    width: 90vw;
     border-top: solid 3.5px #2b2b2b;
     padding-top: 3vh;
+    margin-bottom: 10%;
   }
   .nav2>p{
     display: inline-block;
@@ -266,23 +274,4 @@ nav > a:hover , nav > p:hover{
     height: 2rem;
   }
 
-/*
-  .nav2{
-    display: flex;
-    justify-content: space-around;
-    width: 90vw;
-    height: 10vh;
-    border-top: solid 3.5px #2b2b2b;
-  }
-  .nav2 :nth-child(1){
-    padding-top: 0.25rem;
-  }
-  .nav2 :nth-child(2){
-    width: 22vw;
-    padding-top: 0.5rem;
-  }
-  .nav2>p{
-    width: 19vw;
-  }
-  */
 }
