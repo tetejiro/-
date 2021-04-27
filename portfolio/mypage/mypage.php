@@ -100,14 +100,6 @@ else
                       //member-listから他の人のマイページへ。
                       else
                       {
-/*                      $sql='SELECT name FROM member WHERE code=?';
-                        $stmt=$dbh->prepare($sql);
-                        $data[]=$code;
-                        $stmt->execute($data);
-                        $rec3=$stmt->fetch(PDO::FETCH_ASSOC);
-                        $dbh=null;
-                        print $rec3['name'];
-*/
                         $rec = $SelectDb->selectDb52($code);
                         print '<div class="migi">';
                         print $rec['name'];
