@@ -320,4 +320,36 @@ function selectDb1()
         }
         return $rec;
     }
+
+/*
+    //11.done.phpと、edit.php
+    public function selectDb12(string $sql, array $params): array
+    {
+        $dsn = ConstDb::dsn;
+        $user = ConstDb::user;
+        $password = ConstDb::password;
+        try
+        {
+            $dbh = $ConstDb->ConnectDb($dsn, $user, $password);
+            $stmt = $dbh->prepare($sql);
+            foreach($params as $key => $value){
+                $stmt->bindValue($key, $value);
+            }
+            $stmt->execute();
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!$rec){
+                return [];
+            }
+            return $rec;
+        }
+        catch(Exception $e)
+        {
+            var_dump($e);
+            exit ('セレクトできませんでした。<a href="../registration/index.php">もどる</a>');
+        }
+        finally{
+            $dbh = null;
+        }
+    }
+*/
 }
