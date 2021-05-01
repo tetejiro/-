@@ -4,9 +4,9 @@
 //データベースの定数の定義
 class ConstDb
 {
-    const dsn = 'mysql:dbname=portfolio;host=localhost;charset=utf8';
-    const user = 'yuki';
-    const password = 'hy1733505';
+    public const DSN = 'mysql:dbname=portfolio;host=localhost;charset=utf8';
+    public const user = 'yuki';
+    public const password = 'hy1733505';
 
     const task = 'task';
     const bytime1 = 'bytime1';
@@ -23,6 +23,7 @@ class ConstDb
         $user = self::user;
         $password = self::password;って書いたらエラーになるのはなぜ？？？？
 */
+/*あとで別のファイル作る。
     function ConnectDb($dsn, $user, $password)
     {
         $dsn = self::dsn;
@@ -41,4 +42,5 @@ class ConstDb
         }
         return $dbh;
     }
+    */
 }
